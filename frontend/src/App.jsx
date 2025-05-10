@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import axios from "axios"
-import '../src/assets/styles/App.css'
-
+import './index.css'
 function App() {
     if(import.meta.env.VITE_NODE_ENV === 'production'){
         useEffect(() => {
