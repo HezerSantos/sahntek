@@ -80,8 +80,8 @@ a{
 }
 
 .navbar__side__toggle{
-  width: 4.5rem;
-  height: 2.5rem;
+  width: 4rem;
+  height: 2rem;
   background-color: transparent;
   border: none;
   display: none;
@@ -94,19 +94,19 @@ a{
   & > div:nth-child(1){
     width: 100%;
     background-color: white;
-    height: .35rem;
+    height: .25rem;
   }
 
   & > div:nth-child(2){
     width: 65%;
     background-color: white;
-    height: .35rem;
+    height: .25rem;
   }
 
   & > div:nth-child(3){
     width: 45%;
     background-color: white;
-    height: .35rem;
+    height: .25rem;
   }
 }
 
@@ -116,7 +116,7 @@ a{
   position: fixed;
   background-color: var(--primary__color);
   display: grid;
-  transform: translateX(-200%);
+  transform: translateX(-100%);
   grid-template-rows: 5.5vh 1fr;
   transition: .5s ease-in-out;
   & > .navbar__side__toggle{
@@ -126,6 +126,7 @@ a{
 
   & > .navbar__side__offload{
     position: absolute;
+    display: none;
     width: calc(100vw - 16rem);
     height: 100vh;
     transform: translateX(16rem);
@@ -135,8 +136,8 @@ a{
 }
 
 .navbar__side__button{
-  width: 4.5rem;
-  height: 2.5rem;
+  width: 4rem;
+  height: 2rem;
   background-color: transparent;
   border: none;
   display: flex;
@@ -151,25 +152,29 @@ a{
   & > div:nth-child(1){
     width: 100%;
     background-color: white;
-    height: .35rem;
+    height: .25rem;
   }
 
   & > div:nth-child(2){
     width: 65%;
     background-color: white;
-    height: .35rem;
+    height: .25rem;
   }
 
   & > div:nth-child(3){
     width: 45%;
     background-color: white;
-    height: .35rem;
+    height: .25rem;
   }
 }
 
 .navbar__side__open{
   transform: translateX(0);
-  transition: .5s ease-in-out;
+  transition: .25s ease-in-out;
+
+  & > .navbar__side__offload{
+    display: block;
+  }
 }
 
 .navbar__side__links{
