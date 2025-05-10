@@ -1,0 +1,9 @@
+{
+    "name": "shell-commands",
+    "version": "1.0.0",
+    "scripts": {
+        "commit": "sh -c 'git add -A && git commit -m \"$0\" && git push'",
+        "code": "code ."
+    }
+  }
+  

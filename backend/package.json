@@ -1,0 +1,32 @@
+{
+  "name": "backend-template",
+  "scripts": {
+    "commit": "sh -c 'git add -A && git commit -m \"$0\" && git push'",
+    "dev": "node --watch app.js",
+    "start": "node app.js",
+    "fix": "find .git/objects/ -type f -empty | xargs rm; git fetch -p; git fsck --full",
+    "files": "npm install @supabase/supabase-js multer file-type",
+    "session": "npm install passport-local express-session",
+    "ejs": "npm install ejs",
+    "ws": "npm install ws"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.6.0",
+    "argon2": "^0.41.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "pg": "^8.14.1"
+  },
+  "devDependencies": {
+    "prisma": "^6.7.0"
+  }
+}
