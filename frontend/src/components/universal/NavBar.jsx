@@ -81,6 +81,7 @@ const NavBar = () => {
                     </ul>
                 </div>
             </nav>
+            <div className="fixed__filler"></div>
         </>
     )
 }

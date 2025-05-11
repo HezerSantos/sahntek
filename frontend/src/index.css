@@ -10,6 +10,10 @@ button{
   cursor: pointer;
 }
 
+body{
+  background-color: rgb(227, 235, 241);
+}
+
 a{
   text-decoration: none;
   color: white;
@@ -39,6 +43,7 @@ a{
   position: fixed;
   width: 100vw;
   height: 8vh;
+  min-height: max-content;
   background-color: var(--primary__color);
   box-shadow: 0 5px 15px var(--shadow) !important;
   padding-left: 10%;
@@ -111,6 +116,7 @@ a{
 }
 
 .navbar__side{
+  z-index: 5;
   width: 16rem;
   height: 100vh;
   position: fixed;
@@ -201,8 +207,12 @@ a{
   }
 }
 
+.fixed__filler{
+  height: 8vh;
+}
+
 @media (max-width: 680px){
-  .navbar__main{
+  .navbar__main, .fixed__filler{
     height: 5.5vh;
   }
   .navbar__links > ul > li:nth-child(1){
