@@ -37,9 +37,12 @@ a{
   --shadow: rgb(65, 65, 65);
   --secondary__font: 'Open Sans', sans-serif;
   --main__font: 'Bebas Neue', 'sans-serif';
+  --pro__dot: #547050;
+  --con__dot: #BD2020;
 }
 
 .navbar__main{
+  z-index: 10;
   position: fixed;
   width: 100vw;
   height: 8vh;
@@ -116,7 +119,7 @@ a{
 }
 
 .navbar__side{
-  z-index: 5;
+  z-index: 11;
   width: 16rem;
   height: 100vh;
   position: fixed;
