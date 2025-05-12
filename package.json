@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "scripts": {
         "commit": "sh -c 'git add -A && git commit -m \"$0\" && git push'",
-        "code": "code ."
+        "code": "code .",
+        "dev": "npx ngrok http 5173"
+
     }
   }
   

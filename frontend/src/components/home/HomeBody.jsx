@@ -1,7 +1,8 @@
 const HomeBody = () => {
     return (
         <>
-            <section className="home__information__card__container">
+        <section className="home__main">
+            <div className="home__information__card__container">
                 <div className="information__card pro">
                     <h1>Why <span>Sahntek</span></h1>
                     <ul>
@@ -12,8 +13,8 @@ const HomeBody = () => {
                         <li>Expert Assembly</li>
                     </ul>
                 </div>
-            </section>
-            <section className="home__information__card__container ">
+            </div>
+            <div className="home__information__card__container ">
                 <div className="information__card con">
                     <h1>Other <span>Companies</span></h1>
                     <ul>
@@ -24,7 +25,8 @@ const HomeBody = () => {
                         <li>Non Expert Assembly</li>
                     </ul>
                 </div>
-            </section>
+            </div>
+        </section>
         </>
     )
 }

@@ -11,6 +11,9 @@ button{
 }
 
 body{
+  background-color: var(--primary__color);
+}
+.background__primary{
   background-color: rgb(227, 235, 241);
 }
 
@@ -53,7 +56,7 @@ a{
   padding-right: 10%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-
+  min-width: 20rem;
 
   & div.navbar__links{
 

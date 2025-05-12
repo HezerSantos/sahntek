@@ -1,7 +1,7 @@
 const HomeHero = () => {
     return(
         <>
-            <header className="home__hero">
+            <header className="home__hero background__primary">
                 <div className="home__hero__image">
                     <div>
                         <h1>WE SPEAK <span>PERFORMANCE</span></h1>

@@ -1,6 +1,7 @@
 import '../../assets/styles/home/home.css'
 import HomeBody from '../../components/home/HomeBody'
 import HomeHero from '../../components/home/HomeHero'
+import HomeSectionAdvance from '../../components/home/HomeSectionAdvance'
 
 import NavBar from '../../components/universal/NavBar'
 const HomePage = () => {
@@ -8,8 +9,9 @@ const HomePage = () => {
         <>
             <NavBar />
             <HomeHero />
-            <main className='home__main'>
+            <main className='background__primary'>
                 <HomeBody />
+                <HomeSectionAdvance />
             </main>
         </>
     )

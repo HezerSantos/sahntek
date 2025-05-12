@@ -2,6 +2,7 @@
     padding: 2rem 3% 2rem 3%;
     display: flex;
     justify-content: center;
+    min-width: 20rem;
 }
 
 .home__hero__image{
@@ -97,8 +98,9 @@
 .home__main{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     column-gap: 5rem;
+    min-width: 20rem;
 }
 
 .home__information__card__container{
@@ -194,7 +196,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 1rem;
+        gap: 3rem;
     }
 
     .information__card{
@@ -208,5 +210,84 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+}
+
+.home__section__advance{
+    padding: 1rem 1% 1rem 1%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20rem;
+    z-index: 5;
+
+    & > div{
+        position: relative;
+        width: clamp(20rem, 100%, 80rem);
+        aspect-ratio: 3 / 1;
+        border-radius: clamp(1rem, 3vw, 5rem);
+        background: url('../../images/sectionAdvanceBC.jpg');
+        background-size: cover;
+        background-position: 50% 85%;
+        padding-top: 3.5rem;
+        overflow: hidden;
+        display: flex;
+        justify-content: end;
+        padding-right: 2rem;
+
+        &::after{
+            content: '';
+            position: absolute;
+            inset: 0 0 0 0;
+            backdrop-filter: blur(.125rem);
+            border-radius: clamp(1rem, 3vw, 5rem);
+            z-index: 1;
+        }
+
+    }
+
+
+}
+
+.home__section__advance__text{
+    position: relative;
+    z-index: 2;
+    & > h1 {
+        font-family: var(--main__font);
+        color: white;
+        font-size: clamp(1rem, 5vw, 4rem);
+        margin-left: auto;
+        width: max-content;
+    }
+
+    & > p{
+        font-family: var(--secondary__font);
+        color: white;
+        width: max-content;
+        margin-left: auto;
+        font-size: clamp(.8rem, 3vw, 1.625rem);
+    }
+
+    & span{
+        color: var(--primary__color);
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 500px){
+    .home__section__advance{
+
+        & > div{
+            padding: 0;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .home__section__advance__text{
+        & > p, & > h1{
+            margin: auto;
+        }
     }
 }
