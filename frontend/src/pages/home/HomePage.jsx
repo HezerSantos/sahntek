@@ -1,5 +1,6 @@
 import '../../assets/styles/home/home.css'
 import HomeBody from '../../components/home/HomeBody'
+import HomeComputerPlans from '../../components/home/HomeComputerPlans'
 import HomeHero from '../../components/home/HomeHero'
 import HomeSectionAdvance from '../../components/home/HomeSectionAdvance'
 
@@ -12,6 +13,7 @@ const HomePage = () => {
             <main className='background__primary'>
                 <HomeBody />
                 <HomeSectionAdvance />
+                <HomeComputerPlans />
             </main>
         </>
     )
