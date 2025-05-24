@@ -27,12 +27,12 @@ const NavBar = () => {
                 <div className="navbar__links">
                     <ul>
                         <li>
-                            <Link>
+                            <Link to={'/'}>
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link>
+                            <Link to={'/browse-computers'}> 
                                 Browse Computers
                             </Link>
                         </li>
@@ -59,12 +59,12 @@ const NavBar = () => {
                 <div className="navbar__side__links">
                     <ul>
                         <li>
-                            <Link>
+                            <Link to='/'>
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link>
+                            <Link to='/browse-computers'>
                                 Browse Computers
                             </Link>
                         </li>
