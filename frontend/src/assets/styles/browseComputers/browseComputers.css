@@ -15,7 +15,6 @@
 
 .computer__card{
     min-width: 15rem;
-
     border: 2px solid var(--primary__color);
     border-radius: 1rem;
     padding: 1rem 2rem 1rem 2rem;
@@ -89,7 +88,17 @@
     }
 }
 
+.browse__header__header{
+    font-family: var(--main__font);
+    font-weight: normal;
+    margin-bottom: 1rem;
+    display: none;
+}
+
 @media (max-width: 1075px){
+    .browse__header__header{
+        display: block;
+    }
     .browse__information{
         display: none;
     }
@@ -137,4 +146,20 @@
     top: 50%;
     left: 100%;
     transform: translate(-80%, -50%);
+}
+
+.browse__computer__promotional__banner{
+    display: flex;
+    justify-content: center;
+    padding: 0 5% 5rem 5%;
+
+    & > div{
+        background-image: url('../../images//promotionalBannerBC.jpg');
+        background-size: cover;
+        background-position: 0% 50%;
+        width: clamp(18.8rem, 100%, 120rem);
+        aspect-ratio: 3 / 1;
+        border-radius: 3rem;
+    }
+
 }

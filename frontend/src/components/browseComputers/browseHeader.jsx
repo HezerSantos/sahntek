@@ -27,6 +27,7 @@ const BrowseHeader = () => {
         <>
             <header className="browse__header">
                 <section className="browse__header__content"> 
+                    <h1 className="browse__header__header">Featured PC Deals</h1>
                     <div className="browse__advertise" ref={browseAdvertise}>
                         <ComputerCard />
                         <ComputerCard />
