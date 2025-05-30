@@ -123,14 +123,6 @@
 
 
 
-@media (max-width: 550px){
-    .browse__advertise{
-        grid-auto-columns: 100%;
-    }
-    .computer__header__button{
-        display: block;
-    }
-}
 
 
 
@@ -151,15 +143,99 @@
 .browse__computer__promotional__banner{
     display: flex;
     justify-content: center;
+    min-width: 20rem;
     padding: 0 5% 5rem 5%;
 
     & > div{
+        position: relative;
         background-image: url('../../images//promotionalBannerBC.jpg');
         background-size: cover;
         background-position: 0% 50%;
+        min-height: 10rem;
         width: clamp(18.8rem, 100%, 120rem);
-        aspect-ratio: 3 / 1;
+        aspect-ratio: 3 / 0.75;
         border-radius: 3rem;
+        padding-top: 2rem;
+        padding-left: 2rem;
+
+        &::after{
+            position: absolute;
+            content: '';
+            inset: 0 0 0 0;
+            border-radius: 3rem;
+            background-color: black;
+            opacity: 30%;
+        }
     }
 
+    & > div > *{
+        position: relative;
+        color: white;
+        z-index: 1;
+    }
+
+    & > div > h1{
+        font-family: var(--main__font);
+        font-size: 3rem;
+        font-weight: 500;
+    }
+
+    & > div > p{
+        font-family: var(--secondary__font);
+        font-size: 1.5rem;
+        & > span{
+            color: var(--primary__color);
+            font-weight: 900;
+        }
+    }
+
+}
+
+@media (max-width: 900px){
+
+
+    .browse__computer__promotional__banner{
+        & > div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        & > div > h1{
+            font-size: 2rem;
+        }
+
+        & > div > p{
+            font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 550px){
+    .browse__advertise{
+        grid-auto-columns: 100%;
+    }
+    .computer__header__button{
+        display: block;
+    }
+
+    .browse__computer__promotional__banner{
+        padding: 0 0 5rem 0;
+        & > div{
+            border-radius: 0;
+            padding: 0;
+        }
+        & > div > h1{
+            font-size: 2rem;
+        }
+
+        & > div > p{
+            
+            font-size: .8rem;
+            text-align: center;
+            & > br{
+                display: none;
+            }
+        }
+    }
 }
