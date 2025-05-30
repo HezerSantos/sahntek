@@ -4,6 +4,7 @@ import BrowseHeader from '../../components/browseComputers/browseHeader'
 
 import '../../assets/styles/browseComputers/browseComputers.css'
 import PromotionalBanner from '../../components/browseComputers/promotionalBanner'
+import ComputerSection from '../../components/browseComputers/ComputerSection'
 const ComputersPage = () => {
     return(
         <>
@@ -11,6 +12,7 @@ const ComputersPage = () => {
             <main className='background__primary'>
                 <BrowseHeader />
                 <PromotionalBanner />
+                <ComputerSection className={"computer__section"} sectionName={"Everyday Essentials"}/>
             </main>
             <Footer />
         </>
