@@ -13,6 +13,8 @@ const ComputersPage = () => {
                 <BrowseHeader />
                 <PromotionalBanner />
                 <ComputerSection className={"computer__section"} sectionName={"Everyday Essentials"}/>
+                <ComputerSection className={"computer__section"} sectionName={"Performance Powerhouse"}/>
+                <ComputerSection className={"computer__section"} sectionName={"Ultimate Experience"}/>
             </main>
             <Footer />
         </>
