@@ -4,25 +4,37 @@ exports.getAllComputers = async(req, res, next) => {
         console.time("getAllComputers")
         const pro = prisma.computer.findMany({
             where: { performance: 'Pro' },
-            select: { name: true }
+            select: { name: true, urls: {select: {url: true}} }
         })
         const advanced = prisma.computer.findMany({
             where: { performance: 'Advanced' },
-            select: { name: true }
+            select: { name: true, urls: {select: {url: true}} }
         })
         const premium = prisma.computer.findMany({
             where: { performance: 'Premium' },
-            select: { name: true }
+            select: { name: true, urls: {select: {url: true}} }
         })
 
         const computers = await Promise.all([pro, advanced, premium])
         console.timeEnd("getAllComputers");
-
+        const proComputers = computers[0].map(computer => ({
+            name: computer.name,
+            imageUrl: computer.urls[Math.floor(Math.random() * computer.urls.length)].url
+        }))
+        const advancedComputers = computers[1].map(computer => ({
+            name: computer.name,
+            imageUrl: computer.urls[Math.floor(Math.random() * computer.urls.length)].url
+        }))
+        const premiumComputers = computers[2].map(computer => ({
+            name: computer.name,
+            imageUrl: computer.urls[Math.floor(Math.random() * computer.urls.length)].url
+        }))
+        
         // console.log(computers)
         res.json({
-            pro: computers[0],
-            advanced: computers[1],
-            premium: computers[2]
+            pro: proComputers,
+            advanced: advancedComputers,
+            premium: premiumComputers
         })
     } catch(error){
         next(error)

@@ -1,15 +1,14 @@
-import computerTestImage from '../../assets/images/computerTestImage.png'
-const ComputerCardNormal = () => {
+const ComputerCardNormal = ({imageUrl, name, type, price}) => {
     return(
         <>
             <div className="computer__card__normal">
-                <img src={computerTestImage} alt="" />
+                <img src={imageUrl} alt={`image for ${name}`} />
                 <div>
                     <p className='computer__description'>
-                        Custom Built PC: Vetroo AL800 Mid-Tower with ARGB - E-ATX Compatability
+                        Custom Built PC: {name}
                     </p>
-                    <p className='computer__type'>Pro Performance</p>
-                    <p className='computer__price'>From $300</p>
+                    <p className='computer__type'>{type} Performance</p>
+                    <p className='computer__price'>From ${price}</p>
                     <button className='computer__button'>Explore</button>
                 </div>
             </div>

@@ -358,6 +358,7 @@ footer{
   width: 35%;
 }
 .skelton__button{
+  margin-top: auto;
   align-self: center;
   padding: 1rem 2.5rem 1rem 2.5rem;
   background-color: grey;

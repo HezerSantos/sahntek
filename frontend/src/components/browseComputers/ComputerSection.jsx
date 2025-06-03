@@ -21,49 +21,78 @@ const scrollCard = (direction, container) => {
         behavior: 'smooth'
     })
 }
-const ComputerSection = ({className, sectionName, }) => {
+//ADD EVENTLISTENR TO WINDOW TO HIDE BUTTONS PROPERLY
+const ComputerSection = ({className, sectionName, isLoading, computerContent, type, price }) => {
     const computerCardContainer = useRef(null)
     const computerForward = useRef(null)
     const computerBack = useRef(null)
-    const [ computerCardCount, setComputerCardCount ] = useState(0)
+    const [ isOverflow, setIsOverflow ] = useState(false)
     useEffect(() => {
         if(computerCardContainer.current?.scrollLeft === 0){
             computerBack.current?.classList.add('hide')
         }
-
+        computerCardContainer.current?.scrollLeft + computerCardContainer.current?.clientWidth >= computerCardContainer.current?.scrollWidth? computerForward.current?.classList.add('hide') : computerForward.current?.classList.remove('hide')
         const calculateSize = (e) => {
             e.target.scrollLeft === 0? computerBack.current?.classList.add('hide') : computerBack.current?.classList.remove('hide')
             e.target.scrollLeft + e.target.clientWidth >= e.target.scrollWidth? computerForward.current?.classList.add('hide') : computerForward.current?.classList.remove('hide')
         }
+
         computerCardContainer.current?.addEventListener('scroll', calculateSize)
 
+        const checkOverflow = () => {
+            computerCardContainer.current?.scrollLeft + computerCardContainer.current?.clientWidth >= computerCardContainer.current?.scrollWidth? computerForward.current?.classList.add('hide') : computerForward.current?.classList.remove('hide')
+        };
+
+        const resizeObserver = new ResizeObserver(() => {
+            checkOverflow()
+        })
+
+        if(computerCardContainer){
+            resizeObserver.observe(computerCardContainer.current)
+        }
         return () => {
             computerCardContainer.current?.removeEventListener('scroll', calculateSize)
+            if(computerCardContainer){
+                resizeObserver.unobserve(computerCardContainer.current)
+            }
         }
     }, [])
 
-    useEffect(() => {
-        // console.log(computerCardCount)
-    }, [computerCardCount])
     return(
         <>
             <section className={className}>
                 <div className="computer__card__wrapper">
                     <h1>{sectionName.split(' ')[0]} <span>{sectionName.split(' ')[1]}</span></h1>
                     <div className="computer__card__container" ref={computerCardContainer}>
-                        {/* <ComputerCardSkeleton />
-                        <ComputerCardSkeleton />
-                        <ComputerCardSkeleton />
-                        <ComputerCardSkeleton />
-                        <ComputerCardSkeleton />
-                        <ComputerCardSkeleton /> */}
-                        <ComputerCardNormal />
-                        <ComputerCardNormal />
-                        <ComputerCardNormal />
-                        <ComputerCardNormal />
-                        <ComputerCardNormal />
-                        <ComputerCardNormal />
-                        <ComputerCardNormal />
+                        {isLoading? (
+                            <>
+                                <ComputerCardSkeleton />
+                                <ComputerCardSkeleton />
+                                <ComputerCardSkeleton />
+                                <ComputerCardSkeleton />
+                                <ComputerCardSkeleton />
+                                <ComputerCardSkeleton />
+                                <ComputerCardSkeleton />
+                                
+                            </>
+                         ) : (
+                            <>
+                                {computerContent.map((computer, index) => {
+                                    return(
+                                        <ComputerCardNormal
+                                            key={index} 
+                                            imageUrl={computer.imageUrl}
+                                            name={computer.name}
+                                            type={type}
+                                            price={price}
+                                        />
+                                    )
+                                })}
+                            </>
+                         )
+
+                        }
+                        
                     </div>
                     <button ref={computerBack} className="computer__back__button computer__section__button" onClick={() => scrollCard(-1, computerCardContainer)}>
                         <IoArrowBackOutline />

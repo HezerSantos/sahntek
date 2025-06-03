@@ -8,14 +8,16 @@ import ComputerSection from '../../components/browseComputers/ComputerSection'
 import axios from 'axios'
 import api from '../../../config'
 import { useEffect, useState } from 'react'
-const fetchAllComputers = async(setProComputers, setAdvancedComputers, setPremiumComputers)=> {
+const fetchAllComputers = async(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading)=> {
     try{
-        console.time("fetch")
+        // console.time("fetch")
         const res = await axios.get(`${api.apiUrl}/api/computers`)
-        console.timeEnd("fetch")
+        // console.log(res)
+        // console.timeEnd("fetch")
         setProComputers(res.data.pro)
         setAdvancedComputers(res.data.advanced)
         setPremiumComputers(res.data.premium)
+        setIsLoading(false)
     }catch(e){
         console.error(e)
     }
@@ -24,23 +26,45 @@ const ComputersPage = () => {
     const [ proComputers, setProComputers ] = useState([])
     const [ advancedComputers, setAdvancedComputers ] = useState([])
     const [ premiumComputers, setPremiumComputers ] = useState([])
-
+    const [ isLoading, setIsLoading ] = useState(true)
 
     useEffect(() => {
         const fetchData = async() => {
-            await fetchAllComputers(setProComputers, setAdvancedComputers, setPremiumComputers)
+            await fetchAllComputers(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading)
         }
-        // fetchData()
+        fetchData()
     }, [])
+
     return(
         <>
             <NavBar />
             <main className='background__primary'>
                 <BrowseHeader />
                 <PromotionalBanner />
-                <ComputerSection className={"computer__section"} sectionName={"Everyday Essentials"}/>
-                <ComputerSection className={"computer__section"} sectionName={"Performance Powerhouse"}/>
-                <ComputerSection className={"computer__section"} sectionName={"Ultimate Experience"}/>
+                <ComputerSection 
+                    className={"computer__section"} 
+                    sectionName={"Everyday Essentials"} 
+                    isLoading={isLoading}
+                    computerContent={proComputers}
+                    type={'Pro'}
+                    price={'500'}
+                />
+                <ComputerSection 
+                    className={"computer__section"} 
+                    sectionName={"Performance Powerhouse"} 
+                    isLoading={isLoading}
+                    computerContent={advancedComputers}
+                    type={'Advanced'}
+                    price={'1000'}
+                />
+                <ComputerSection 
+                    className={"computer__section"} 
+                    sectionName={"Ultimate Experience"} 
+                    isLoading={isLoading}
+                    computerContent={premiumComputers}
+                    type={'Premium'}
+                    price={'2000'}
+                />
             </main>
             <Footer />
         </>

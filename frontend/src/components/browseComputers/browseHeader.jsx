@@ -1,7 +1,8 @@
 import { useRef } from "react";
 import ComputerCard from "./ComputerCard"
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
-
+import computerImage1 from '../../assets/images/computerImage.PNG'
+import computerImage2 from '../../assets/images/computerImage2.PNG'
 const scrollCard = (direction, container) => {
     const computerCard = container.current?.querySelector('.computer__card')
     const cardWidth = computerCard.offsetWidth
@@ -29,8 +30,8 @@ const BrowseHeader = () => {
                 <section className="browse__header__content"> 
                     <h1 className="browse__header__header">Featured PC Deals</h1>
                     <div className="browse__advertise" ref={browseAdvertise}>
-                        <ComputerCard />
-                        <ComputerCard />
+                        <ComputerCard  computerImage={computerImage1}/>
+                        <ComputerCard computerImage={computerImage2}/>
                     </div>
                     <div className="browse__information">
                         <div className="browse__information__content">

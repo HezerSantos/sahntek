@@ -1,4 +1,3 @@
-import computerTestImage from '../../assets/images/computerTestImage.png'
 const ComputerCardSkeleton = () => {
     return(
         <>
