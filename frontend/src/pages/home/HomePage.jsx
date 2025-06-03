@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import '../../assets/styles/home/home.css'
 import HomeBody from '../../components/home/HomeBody'
 import HomeComputerPlans from '../../components/home/HomeComputerPlans'
@@ -8,7 +9,9 @@ import Footer from '../../components/universal/Footer'
 import NavBar from '../../components/universal/NavBar'
 const HomePage = () => {
     return(
-        <>
+        <>  <Helmet>
+                <title>Home - Sahntek</title>
+            </Helmet>
             <NavBar />
             <HomeHero />
             <main className='background__primary'>

@@ -52,7 +52,7 @@ const ComputerSection = ({className, sectionName, isLoading, computerContent, ty
         }
         return () => {
             computerCardContainer.current?.removeEventListener('scroll', calculateSize)
-            if(computerCardContainer){
+            if(computerCardContainer.current){
                 resizeObserver.unobserve(computerCardContainer.current)
             }
         }
@@ -85,6 +85,7 @@ const ComputerSection = ({className, sectionName, isLoading, computerContent, ty
                                             name={computer.name}
                                             type={type}
                                             price={price}
+                                            id={computer.id}
                                         />
                                     )
                                 })}

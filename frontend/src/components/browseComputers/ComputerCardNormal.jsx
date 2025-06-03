@@ -1,4 +1,11 @@
-const ComputerCardNormal = ({imageUrl, name, type, price}) => {
+import { useNavigate } from "react-router-dom"
+
+const handleNavigate = (navigate, id) => {
+    navigate(`/browse-computers/${id}`)
+}
+
+const ComputerCardNormal = ({imageUrl, name, type, price, id}) => {
+    const navigate = useNavigate()
     return(
         <>
             <div className="computer__card__normal">
@@ -9,7 +16,7 @@ const ComputerCardNormal = ({imageUrl, name, type, price}) => {
                     </p>
                     <p className='computer__type'>{type} Performance</p>
                     <p className='computer__price'>From ${price}</p>
-                    <button className='computer__button'>Explore</button>
+                    <button className='computer__button' onClick={() => handleNavigate(navigate, id)}>Explore</button>
                 </div>
             </div>
         </>

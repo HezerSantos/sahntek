@@ -8,6 +8,8 @@ import ComputerSection from '../../components/browseComputers/ComputerSection'
 import axios from 'axios'
 import api from '../../../config'
 import { useEffect, useState } from 'react'
+import DebugConsole from '../../components/debug'
+import { Helmet } from 'react-helmet-async'
 const fetchAllComputers = async(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading)=> {
     try{
         // console.time("fetch")
@@ -37,6 +39,10 @@ const ComputersPage = () => {
 
     return(
         <>
+            <Helmet>
+                <title>Browse Computers - Sahntek</title>
+
+            </Helmet>
             <NavBar />
             <main className='background__primary'>
                 <BrowseHeader />

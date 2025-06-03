@@ -48,8 +48,8 @@ a{
   z-index: 10;
   position: fixed;
   width: 100vw;
-  height: 8vh;
-  min-height: max-content;
+  height: auto;
+  min-height: 8vh;
   background-color: var(--primary__color);
   box-shadow: 0 5px 15px var(--shadow) !important;
   padding-left: 10%;
@@ -213,13 +213,13 @@ a{
   }
 }
 
-.fixed__filler{
+/* .fixed__filler{
   height: 8vh;
-}
+} */
 
 @media (max-width: 680px){
   .navbar__main, .fixed__filler{
-    height: 5.5vh;
+    /* height: 5.5vh;  Right here */
   }
   .navbar__links > ul > li:nth-child(1){
     display: none;
