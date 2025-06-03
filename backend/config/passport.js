@@ -1,5 +1,4 @@
 const passport = require("passport");
-const bcrypt = require("bcryptjs");
 const prisma = require('./prisma')
 const { format } = require('date-fns');
 require('dotenv').config();

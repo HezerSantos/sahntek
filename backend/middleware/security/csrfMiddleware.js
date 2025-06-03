@@ -7,36 +7,35 @@ const RFRS_SECRET = process.env.RFRS_SECRET
 
 const csrf = async(req, res, next) => {
     const crossSurf = crypto.randomBytes(32).toString('hex');
-    const id = Math.floor(Math.random() * 20)
+    const refreshSurf = crypto.randomBytes(32).toString('hex');
     const spayload = {
-        _fqekx: crossSurf,
-        oqi_wd: id
+        csrf: crossSurf,
     }
 
     const rpayload = {
-        _wdasd: "ac29e2d6d9a5c433ad412d08905d5506"
+        csrf: refreshSurf
     }
 
-    const _sxrfa = jwt.sign(spayload, XFRS_SECRET, { expiresIn: '5m'})
-    const asiw_ = jwt.sign(rpayload, RFRS_SECRET, { expiresIn: '5m'})
+    const __HostCsrfToken = jwt.sign(spayload, XFRS_SECRET, { expiresIn: '5m'})
+    const __HostRefreshCsrfToken = jwt.sign(rpayload, RFRS_SECRET, { expiresIn: '5m'})
 
     
-    res.cookie("_sxrfa", _sxrfa, {
+    res.cookie("__Host.csrf-token", __HostCsrfToken, {
         httpOnly: false, 
         secure: true, 
         maxAge: 5 * 1000 * 60, 
         sameSite: "None",
         path: "/",
-        domain: ".hallowedvisions.com"
+        // domain: ".hallowedvisions.com"
     })
 
-    res.cookie("asiw_", asiw_, {
+    res.cookie("__Host.refresh-csrf-token", __HostRefreshCsrfToken, {
         httpOnly: false, 
         secure: true, 
         maxAge: 5 * 1000 * 60, 
         sameSite: "None",
         path: "/",
-        domain: ".hallowedvisions.com"
+        // domain: ".hallowedvisions.com"
     })
 
     res.status(200).send()

@@ -29,13 +29,14 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 // Routers
 const logoutRouter = require("./routes/auth/logoutRouter");
-
+const loginRouter = require("./routes/auth/loginRouter");
+const refreshRouter = require("./routes/auth/refreshRouter");
 
 
 // Routes
 app.use("/api/auth/csrf", csrf)
-app.use("/api/login", validateCsrf, loginRouter);
-app.use("/api/auth/refresh",validateRefreshCsrf, refreshRouter);
+// app.use("/api/login", validateCsrf, loginRouter);
+// app.use("/api/auth/refresh",validateRefreshCsrf, refreshRouter);
 
 // Logout Route
 app.use("/api/logout", logoutRouter)
