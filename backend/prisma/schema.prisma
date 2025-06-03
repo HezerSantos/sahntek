@@ -29,4 +29,12 @@ model Computer {
   name        String
   performance String
   parts       ComputerPart[]
+  urls ComputerImages[]
+}
+
+model ComputerImages {
+  id Int @id @default(autoincrement())
+  url String
+  computerId Int
+  computer Computer @relation(fields: [computerId], references: [id])
 }
