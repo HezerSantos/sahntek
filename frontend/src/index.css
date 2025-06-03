@@ -319,3 +319,49 @@ footer{
   }
 }
 
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton__container{
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.skeleton{
+  height: .8rem;
+  background-color: grey;
+  border-radius: .2rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton__image{
+  align-self: center;
+  justify-self: center;
+  background-color: grey;
+  width: 6rem;
+  height: 80%;
+  border-radius: .5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.sk__desc{
+  width: 95%;
+}
+
+.sk__type, .sk__price{
+  width: 35%;
+}
+.skelton__button{
+  align-self: center;
+  padding: 1rem 2.5rem 1rem 2.5rem;
+  background-color: grey;
+  border: none;
+  border-radius: .5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}

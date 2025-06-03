@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ComputerCardNormal from "./ComputerCardNormal"
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
+import ComputerCardSkeleton from "./ComputuerCardSkeleton";
 const scrollCard = (direction, container) => {
     const isAtStart = container.current?.scrollLeft === 0;
     const computerCard = container.current?.querySelector('.computer__card__normal')
@@ -50,6 +51,12 @@ const ComputerSection = ({className, sectionName, }) => {
                 <div className="computer__card__wrapper">
                     <h1>{sectionName.split(' ')[0]} <span>{sectionName.split(' ')[1]}</span></h1>
                     <div className="computer__card__container" ref={computerCardContainer}>
+                        {/* <ComputerCardSkeleton />
+                        <ComputerCardSkeleton />
+                        <ComputerCardSkeleton />
+                        <ComputerCardSkeleton />
+                        <ComputerCardSkeleton />
+                        <ComputerCardSkeleton /> */}
                         <ComputerCardNormal />
                         <ComputerCardNormal />
                         <ComputerCardNormal />

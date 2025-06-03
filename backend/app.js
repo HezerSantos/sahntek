@@ -31,6 +31,7 @@ app.set("view engine", "ejs");
 const logoutRouter = require("./routes/auth/logoutRouter");
 const loginRouter = require("./routes/auth/loginRouter");
 const refreshRouter = require("./routes/auth/refreshRouter");
+const computerRouter = require("./routes/computer/computerRouter");
 
 
 // Routes
@@ -40,6 +41,7 @@ app.use("/api/auth/csrf", csrf)
 
 // Logout Route
 app.use("/api/logout", logoutRouter)
+app.use("/api/computers", computerRouter)
 app.use(errorMiddleware)
 // Server
 app.listen(8080, () => {

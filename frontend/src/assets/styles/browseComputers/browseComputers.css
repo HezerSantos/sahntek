@@ -294,6 +294,7 @@
 }
 
 .computer__description{
+    width: 95%;
     font-family: var(--secondary__font);
     font-size: .8rem;
     font-weight: 600;
@@ -318,7 +319,9 @@
     font-weight: 900;
     font-family: var(--secondary__font);
     border-radius: .5rem;
+    margin-top: auto;
     align-self: center;
+    
     
 }
 
