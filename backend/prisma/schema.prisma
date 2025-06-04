@@ -22,14 +22,33 @@ model ComputerPart {
   price      Float
   computerId Int
   computer   Computer @relation(fields: [computerId], references: [id])
+
+  computersAsCpu Computer[] @relation("CPU")
+  computersAsGpu Computer[] @relation("GPU")
+  computersAsMotherboard Computer[] @relation("Motherboard")
+  computersAsPsu Computer[] @relation("PSU")
+  computersAsCooler Computer[] @relation("Cooler")
 }
 
 model Computer {
-  id          Int            @id @default(autoincrement())
-  name        String
-  performance String
-  parts       ComputerPart[]
-  urls ComputerImages[]
+  id                Int            @id @default(autoincrement())
+  name              String
+  performance       String
+  parts             ComputerPart[]
+  urls              ComputerImages[]
+  cpuId             Int?
+  gpuId             Int?
+  motherboardId     Int?
+  psuId             Int?
+  coolerId          Int?
+
+
+  cpu           ComputerPart?  @relation("CPU", fields: [cpuId], references: [id])
+  gpu           ComputerPart?  @relation("GPU", fields: [gpuId], references: [id])
+  motherboard   ComputerPart?  @relation("Motherboard", fields: [motherboardId], references: [id])
+  psu           ComputerPart?  @relation("PSU", fields: [psuId], references: [id])
+  cooler        ComputerPart?  @relation("Cooler", fields: [coolerId], references: [id])
+
 }
 
 model ComputerImages {
