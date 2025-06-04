@@ -1,7 +1,8 @@
 import App from "./App";
 import HomePage from "./pages/home/HomePage";
 import ComputersPage from "./pages/browseComputers/ComputersPage";
-import ComputerPageById from "./pages/browseComputers/ComputerPageById";
+import ComputerPageById from "./pages/computerById/ComputerPageById";
+
 const routes = [
     {
         path: "/",
