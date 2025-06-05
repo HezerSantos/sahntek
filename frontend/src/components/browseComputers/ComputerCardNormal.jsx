@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom"
 
 const handleNavigate = (navigate, id) => {
     navigate(`/browse-computers/${id}`)
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 const ComputerCardNormal = ({imageUrl, name, type, price, id}) => {

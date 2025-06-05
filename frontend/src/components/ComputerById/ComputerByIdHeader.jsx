@@ -1,13 +1,13 @@
 import computerTestImage from '../../assets/images/computerImage.PNG'
 import ComputerColorButton from './ComputerColorButton'
-const ComputerByIdHeader = () => {
+const ComputerByIdHeader = ({name}) => {
     return(
         <>
             <header className="background__primary computer__by__id__header">
                 <div className='cXid__header'>
                     <img src={computerTestImage} alt="" />
                     <div>
-                        <h1>Custom Performance Desktop PC - Micro Atx Tower</h1>
+                        <h1>Custom Performance Desktop PC - {name}</h1>
                         <p>
                             This compact performance desktop is built in a durable Micro-ATX tower chassis by MSI, designed to deliver reliable airflow and efficient internal organization. It features a high-end graphics card paired with a Micro-ATX motherboard, offering strong support for demanding applications, multitasking, and modern gaming workflows.
                             <br />
