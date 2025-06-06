@@ -1,11 +1,17 @@
+import { useEffect } from 'react'
 import computerTestImage from '../../assets/images/computerImage.PNG'
 import ComputerColorButton from './ComputerColorButton'
-const ComputerByIdHeader = ({name}) => {
+import ComputerColorButtonSkeleton from './ComputerColorButtonSkeleton'
+const ComputerByIdHeader = ({name, urls, isLoading, currentComputer, setCurrentComputer}) => {
     return(
         <>
             <header className="background__primary computer__by__id__header">
                 <div className='cXid__header'>
-                    <img src={computerTestImage} alt="" />
+                    {isLoading? (
+                        <div className='skeleton-image__computer__header'></div>
+                    ) : (
+                        <img src={currentComputer} alt="" />
+                    )}
                     <div>
                         <h1>Custom Performance Desktop PC - {name}</h1>
                         <p>
@@ -19,7 +25,27 @@ const ComputerByIdHeader = ({name}) => {
                             Color: <strong>White</strong>
                         </p>
                         <div>
-                            <ComputerColorButton />
+                            {isLoading? (
+                                <>
+                                    <ComputerColorButtonSkeleton />
+                                    <ComputerColorButtonSkeleton />
+                                    <ComputerColorButtonSkeleton />
+                                </>
+                            ) : (
+                                <>
+                                    {urls.map((url, index) => {     
+                                        return(
+                                            <ComputerColorButton 
+                                                key={`${url}-${index}`}
+                                                url={url}
+                                                urlList={urls}
+                                                index={index}
+                                                setCurrentComputer={setCurrentComputer}
+                                            />
+                                        )
+                                    })}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

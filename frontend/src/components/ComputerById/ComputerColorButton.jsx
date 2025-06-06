@@ -1,10 +1,17 @@
+import { useEffect } from 'react'
 import computerImage from '../../assets/images/computerImage.PNG'
 
-const ComputerColorButton = () => {
+const handleComputerColorChange = (index, setCurrentComputer, urlList) => {
+    setCurrentComputer(urlList[index].url)
+}
+const ComputerColorButton = ({url, urlList, index, setCurrentComputer}) => {
     return(
         <>
-            <button className='computer__color__button background__primary'>
-                <img src={computerImage} alt="" />
+            <button 
+                className='computer__color__button background__primary' 
+                onClick={() => handleComputerColorChange(index, setCurrentComputer, urlList)}
+            >
+                <img src={url.url} alt="" />
             </button>
         </>
     )

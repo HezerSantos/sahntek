@@ -1,8 +1,9 @@
 .computer__by__id__header{
     margin-top: 8vh;
     min-width: 20rem;
-    max-height: 35rem;
+    min-height: min-content;
     height: 100vh;
+    max-height: 35rem;
     padding: 5rem 5% 0 5%;
     display: flex;
     justify-content: center;
@@ -34,8 +35,16 @@
         & > p{
             font-family: var(--secondary__font);
         }
+
+        & > div{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
     }
 }
+
+
 
 .computer__color__button{
     width: 5rem;
@@ -69,7 +78,6 @@
 @media (max-width: 1020px){
     .cXid__header{
         grid-template-columns: none;
-        padding-bottom: 5rem;
         row-gap: 1.5rem;
 
         & > img{
@@ -152,6 +160,8 @@
         }
     }
 }
+
+
 
 @media (max-width: 750px){
     .computer__part{

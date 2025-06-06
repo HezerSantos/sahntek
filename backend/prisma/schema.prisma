@@ -34,26 +34,27 @@ model Computer {
   name              String
   performance       String
   urls              ComputerImages[]
-  cpuId             Int?
-  gpuId             Int?
-  ramId             Int?
-  motherboardId     Int?
-  psuId             Int?
-  coolerId          Int?
+  cpuId             Int
+  gpuId             Int
+  ramId             Int
+  motherboardId     Int
+  psuId             Int
+  coolerId          Int
 
 
-  cpu           ComputerPart?  @relation("CPU", fields: [cpuId], references: [id])
-  gpu           ComputerPart?  @relation("GPU", fields: [gpuId], references: [id])
-  ram           ComputerPart?  @relation("RAM", fields: [ramId], references: [id])
-  motherboard   ComputerPart?  @relation("Motherboard", fields: [motherboardId], references: [id])
-  psu           ComputerPart?  @relation("PSU", fields: [psuId], references: [id])
-  cooler        ComputerPart?  @relation("Cooler", fields: [coolerId], references: [id])
+  cpu           ComputerPart  @relation("CPU", fields: [cpuId], references: [id])
+  gpu           ComputerPart  @relation("GPU", fields: [gpuId], references: [id])
+  ram           ComputerPart  @relation("RAM", fields: [ramId], references: [id])
+  motherboard   ComputerPart  @relation("Motherboard", fields: [motherboardId], references: [id])
+  psu           ComputerPart  @relation("PSU", fields: [psuId], references: [id])
+  cooler        ComputerPart  @relation("Cooler", fields: [coolerId], references: [id])
 
 }
 
 model ComputerImages {
   id Int @id @default(autoincrement())
   url String
+  color String?
   computerId Int
   computer Computer @relation(fields: [computerId], references: [id])
 }

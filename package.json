@@ -4,7 +4,9 @@
     "scripts": {
         "commit": "sh -c 'git add -A && git commit -m \"$0\" && git push'",
         "code": "code .",
-        "dev": "npx ngrok http 5173"
+        "dev": "npx ngrok http 5173",
+        "fix": "find .git/objects/ -type f -empty | xargs rm; git fetch -p; git fsck --full"
+
 
     }
   }

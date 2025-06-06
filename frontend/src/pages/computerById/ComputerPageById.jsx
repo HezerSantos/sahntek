@@ -9,16 +9,18 @@ import axios from 'axios'
 import api from '../../../config'
 import { useEffect } from "react"
 import { useState } from "react"
-const fetchComputerById = async(id, setCpuName, setGpuName, setRamName, setMoboName, setComputerName) => {
+const fetchComputerById = async(id, setCpuName, setGpuName, setRamName, setMoboName, setImageUrls, setComputerName, setIsLoading) => {
     try{
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`)
         const computer = res.data.computer
+        console.log(computer)
         setComputerName(computer.name)
         setCpuName(computer.cpu.name)
         setGpuName(computer.gpu.name)
         setRamName(computer.ram.name)
         setMoboName(computer.motherboard.name)
-
+        setImageUrls(computer.urls)
+        setIsLoading(false)
     } catch(e){
         console.error(e)
     }
@@ -29,28 +31,42 @@ const ComputerPageById = () => {
     const [ gpuName, setGpuName ] = useState("")
     const [ ramName, setRamName ] = useState("")
     const [ moboName, setMoboName ] = useState("")
+    const [ imageUrls, setImageUrls ] = useState("")
+    const [ isLoading, setIsLoading ] = useState(true)
 
+    const [ currentComputer, setCurrentComputer ] = useState("")
+
+    useEffect(() => {
+        setCurrentComputer(imageUrls[0]?.url)
+    }, [imageUrls])
     const { id } = useParams()
     useEffect(() => {
         const fetchData = async() => {
-            await fetchComputerById(id, setCpuName, setGpuName, setRamName, setMoboName, setComputerName)
+            await fetchComputerById(id, setCpuName, setGpuName, setRamName, setMoboName, setImageUrls, setComputerName, setIsLoading)
         }
 
-        // fetchData()
-    })
+        fetchData()
+    }, [])
     return(
         <>
             <Helmet>
                 <title>Computer {id} - Sahntek</title>
             </Helmet>
             <NavBar />
-            <ComputerByIdHeader name={computerName}/>
+            <ComputerByIdHeader 
+                name={computerName} 
+                urls={imageUrls} 
+                isLoading={isLoading} 
+                currentComputer={currentComputer}
+                setCurrentComputer={setCurrentComputer}
+            />
             <main className="background__primary">
                 <ComputerPartSection 
                       cpu={cpuName}
                       gpu={gpuName}
                       ram={ramName}
                       mobo={moboName}
+                      isLoading={isLoading}
                 />
             </main>
             <Footer />

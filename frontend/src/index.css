@@ -366,3 +366,48 @@ footer{
   border-radius: .5rem;
   animation: pulse 1.5s ease-in-out infinite;
 }
+
+.skeleton-image__computerXid{
+  width: 80%;
+  aspect-ratio: 1 / 1;
+  align-self: center;
+  justify-self: center;
+  background-color: grey;
+  border-radius: .5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-description{
+  width: 45%;
+  background-color: grey;
+  height: 1rem;
+  justify-self: center;
+  border-radius: .25rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-price{
+    width: 85%;
+    height: 2rem;
+    background-color: grey;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-price__button{
+    padding: 1.5rem 3rem 1.5rem 3rem;
+    background-color: grey;
+    border-radius: .5rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-image__computer__header{
+    align-self: center;
+    justify-self: center;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: grey;
+    border-radius: 1rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
