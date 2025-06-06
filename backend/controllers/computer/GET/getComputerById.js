@@ -43,11 +43,7 @@ exports.getComputerById = async(req, res, next) => {
                         price: true
                     }
                 },
-                urls:{
-                    select:{
-                        url: true
-                    }
-                }
+                urls: true
             }
         })
         if (!computerData){

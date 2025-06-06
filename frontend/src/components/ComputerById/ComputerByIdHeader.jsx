@@ -10,10 +10,17 @@ const ComputerByIdHeader = ({name, urls, isLoading, currentComputer, setCurrentC
                     {isLoading? (
                         <div className='skeleton-image__computer__header'></div>
                     ) : (
-                        <img src={currentComputer} alt="" />
+                        <img src={currentComputer?.url} alt="" />
                     )}
                     <div>
-                        <h1>Custom Performance Desktop PC - {name}</h1>
+                        <h1>Custom Performance Desktop PC - 
+                            {isLoading? (
+                                <span className='skeleton-span'></span>
+                            ) : (
+                                <span> {name}</span>
+                            )}
+                            
+                        </h1>
                         <p>
                             This compact performance desktop is built in a durable Micro-ATX tower chassis by MSI, designed to deliver reliable airflow and efficient internal organization. It features a high-end graphics card paired with a Micro-ATX motherboard, offering strong support for demanding applications, multitasking, and modern gaming workflows.
                             <br />
@@ -22,7 +29,13 @@ const ComputerByIdHeader = ({name, urls, isLoading, currentComputer, setCurrentC
                         </p>
 
                         <p>
-                            Color: <strong>White</strong>
+                            Color: 
+                            {isLoading? (
+                                <span className='skeleton-span'></span>
+                            ) : (
+                                <strong> {currentComputer?.color}</strong>
+                            )}
+                            
                         </p>
                         <div>
                             {isLoading? (

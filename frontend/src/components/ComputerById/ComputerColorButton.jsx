@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import computerImage from '../../assets/images/computerImage.PNG'
 
 const handleComputerColorChange = (index, setCurrentComputer, urlList) => {
-    setCurrentComputer(urlList[index].url)
+    setCurrentComputer(urlList[index])
 }
 const ComputerColorButton = ({url, urlList, index, setCurrentComputer}) => {
     return(

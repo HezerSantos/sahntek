@@ -6,6 +6,8 @@ const ComputerPartSection = ({
     ram,
     gpu,
     mobo,
+    cooler,
+    price,
     isLoading
 }) => {
     return(
@@ -21,6 +23,7 @@ const ComputerPartSection = ({
                                 <ComputerPartSkeleton type={'Graphics Card'}/>
                                 <ComputerPartSkeleton type={'Storage'}/>
                                 <ComputerPartSkeleton type={'Motherboard'}/>
+                                <ComputerPartSkeleton type={'Cooler'}/>
                                 <ComputerPartSkeleton type={'Operating System'}/>
                                 <ComputerPartSkeleton type={'Build Fee'}/>
                             </>
@@ -31,6 +34,7 @@ const ComputerPartSection = ({
                                 <ComputerPart type={'Graphics Card'} partName={gpu}/>
                                 <ComputerPart type={'Storage'} partName={'1 TB PCIe NVMe M.2 Solid State Drive'}/>
                                 <ComputerPart type={'Motherboard'} partName={mobo}/>
+                                <ComputerPart type={'Cooler'} partName={cooler}/>
                                 <ComputerPart type={'Operating System'} partName={'Windows 11'}/>
                                 <ComputerPart type={'Build Fee'} partName={'$50'}/>
                             </>
@@ -45,7 +49,7 @@ const ComputerPartSection = ({
                             </>
                         ) : (
                             <>
-                                <h1>$1,500</h1>
+                                <h1>${price}</h1>
                                 <button>
                                     Add to Cart
                                 </button>

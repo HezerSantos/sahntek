@@ -411,3 +411,13 @@ footer{
     border-radius: 1rem;
     animation: pulse 1.5s ease-in-out infinite;
 }
+
+.skeleton-span{
+  display: inline-block;
+  width: 35%;
+  margin-left: 1rem;
+  height: 1rem;
+  border-radius: .25rem;
+  background-color: grey;
+  animation: pulse 1.5s ease-in-out infinite;
+}
