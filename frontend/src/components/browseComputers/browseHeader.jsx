@@ -3,7 +3,9 @@ import ComputerCard from "./ComputerCard"
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 import computerImage1 from '../../assets/images/computerImage.PNG'
 import computerImage2 from '../../assets/images/computerImage2.PNG'
+import FeaturedDealSkeleton from "./FeaturedDealSkeleton";
 const scrollCard = (direction, container) => {
+    
     const computerCard = container.current?.querySelector('.computer__card')
     const cardWidth = computerCard.offsetWidth
 
@@ -13,15 +15,15 @@ const scrollCard = (direction, container) => {
     const leftPadding = parseFloat(containerStyle.paddingLeft) || 0;
     const rightPadding = parseFloat(containerStyle.paddingRight) || 0;
 
-    const gap = parseFloat(containerStyle.gap || 0);
-
+    const gap = parseFloat(containerStyle.gap) || 8;
+    console.log(gap)
     const scrollDistance = cardWidth + gap + leftPadding + rightPadding;
     container.current?.scrollBy({
         left: direction * scrollDistance,
         behavior: 'smooth'
     })
 }
-const BrowseHeader = () => {
+const BrowseHeader = ({featuredDeals, isLoading}) => {
     const browseAdvertise = useRef(null)
 
     return(
@@ -29,9 +31,32 @@ const BrowseHeader = () => {
             <header className="browse__header">
                 <section className="browse__header__content"> 
                     <h1 className="browse__header__header">Featured PC Deals</h1>
-                    <div className="browse__advertise" ref={browseAdvertise}>
-                        <ComputerCard  computerImage={computerImage1}/>
-                        <ComputerCard computerImage={computerImage2}/>
+                    <div className="browse__advertise__wrapper">
+                        <div className="browse__advertise" ref={browseAdvertise}>
+                            {isLoading? (
+                                <>
+                                    <FeaturedDealSkeleton />
+                                    <FeaturedDealSkeleton />
+                                </>
+                            ) : (
+                                featuredDeals.map((deal, index) => {
+                                    return(
+                                        <ComputerCard 
+                                            key={`FD100${index}`}
+                                            url={deal.imageUrl}
+                                            name={deal.name}
+                                            id={deal.id}
+                                        />
+                                    )
+                                })
+                            )}
+                        </div>
+                        <button className="back__button computer__header__button" onClick={() => scrollCard(-1, browseAdvertise)}>
+                            <IoArrowBackOutline />
+                        </button>
+                        <button className="forward__button computer__header__button" onClick={() => scrollCard(1, browseAdvertise)}>
+                            <IoArrowForwardOutline />
+                        </button>
                     </div>
                     <div className="browse__information">
                         <div className="browse__information__content">
@@ -43,12 +68,7 @@ const BrowseHeader = () => {
                             </p>
                         </div>
                     </div>
-                    <button className="back__button computer__header__button" onClick={() => scrollCard(-1, browseAdvertise)}>
-                        <IoArrowBackOutline />
-                    </button>
-                    <button className="forward__button computer__header__button" onClick={() => scrollCard(1, browseAdvertise)}>
-                        <IoArrowForwardOutline />
-                    </button>
+
                 </section>
             </header>
         </>

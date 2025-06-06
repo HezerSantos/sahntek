@@ -10,12 +10,16 @@ import api from '../../../config'
 import { useEffect, useState } from 'react'
 import DebugConsole from '../../components/debug'
 import { Helmet } from 'react-helmet-async'
-const fetchAllComputers = async(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading)=> {
+const fetchAllComputers = async(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading, setFeautredDeals)=> {
     try{
         // console.time("fetch")
         const res = await axios.get(`${api.apiUrl}/api/computers`)
         // console.log(res)
         // console.timeEnd("fetch")
+        const randomComputerOne = res.data.pro[Math.floor(Math.random() * res.data.pro.length)] 
+        const randomComputerTwo = res.data.advanced[Math.floor(Math.random() * res.data.advanced.length)] 
+        const randomComputerThree = res.data.premium[Math.floor(Math.random() * res.data.premium.length)] 
+        setFeautredDeals([randomComputerOne, randomComputerTwo, randomComputerThree])
         setProComputers(res.data.pro)
         setAdvancedComputers(res.data.advanced)
         setPremiumComputers(res.data.premium)
@@ -28,11 +32,15 @@ const ComputersPage = () => {
     const [ proComputers, setProComputers ] = useState([])
     const [ advancedComputers, setAdvancedComputers ] = useState([])
     const [ premiumComputers, setPremiumComputers ] = useState([])
+    const [ featuredDeals, setFeautredDeals ] = useState([])
     const [ isLoading, setIsLoading ] = useState(true)
 
     useEffect(() => {
+        console.log(featuredDeals)
+    }, [featuredDeals])
+    useEffect(() => {
         const fetchData = async() => {
-            await fetchAllComputers(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading)
+            await fetchAllComputers(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading, setFeautredDeals)
         }
         fetchData()
     }, [])
@@ -45,7 +53,7 @@ const ComputersPage = () => {
             </Helmet>
             <NavBar />
             <main className='background__primary'>
-                <BrowseHeader />
+                <BrowseHeader featuredDeals={featuredDeals} isLoading={isLoading}/>
                 <PromotionalBanner />
                 <ComputerSection 
                     className={"computer__section"} 

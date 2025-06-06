@@ -421,3 +421,38 @@ footer{
   background-color: grey;
   animation: pulse 1.5s ease-in-out infinite;
 }
+
+.featured-deal-skeleton__image{
+  width: 10rem;
+  height: 10em;
+  background-color: grey;
+  border-radius: 1rem;
+  align-self: center;
+  justify-self: center;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.featured-deal-skeleton__link{
+  width: 100%;
+  height: 1rem;
+  border-radius: .25rem;
+  background-color: grey;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.featured-deal-skeleton__price{
+  width: 30%;
+  height: 1rem;
+  border-radius: .25rem;
+  background-color: grey;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.featured-deal-skeleton__button{
+  width: 45%;
+  height: 3rem;
+  align-self: center;
+  border-radius: .5rem;
+  background-color: grey;
+  animation: pulse 1.5s ease-in-out infinite;
+}

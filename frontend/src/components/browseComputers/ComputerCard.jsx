@@ -1,16 +1,16 @@
-import { Link } from "react-router-dom"
-const ComputerCard = ({computerImage}) => {
+import { Link, useNavigate } from "react-router-dom"
+const ComputerCard = ({id, name, url}) => {
+    const navigate = useNavigate()
     return (
         <>
             <div className="computer__card">
-                <img src={computerImage} alt="" className='computer__image'/>
+                <img src={url} alt="" className='computer__image'/>
                 <div>
-                    <Link className='card__header'>
-                        Custom Built PC: MSI Mid-Tower with ARGB - Micro ATX Compatibility
-                        Premium Performance
+                    <Link className='card__header' to={`/browse-computers/${id}`}>
+                        {name}
                     </Link>
                     <h1 className='card__price'>From $1500</h1>
-                    <button className='card__button'>Explore</button>
+                    <button onClick={() => navigate(`/browse-computers/${id}`)} className='card__button'>Explore</button>
                 </div>
             </div>
         </>
