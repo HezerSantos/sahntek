@@ -27,6 +27,7 @@ const ComputerSection = ({className, sectionName, isLoading, computerContent, ty
     const computerForward = useRef(null)
     const computerBack = useRef(null)
     const [ isOverflow, setIsOverflow ] = useState(false)
+    
     useEffect(() => {
         if(computerCardContainer.current?.scrollLeft === 0){
             computerBack.current?.classList.add('hide')

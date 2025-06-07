@@ -1,5 +1,6 @@
 import ComputerPart from "./ComputerPart"
 import ComputerPartSkeleton from "./ComputerPartSkeleton"
+import ComputerPartStorage from "./ComputerPartStorage"
 
 const ComputerPartSection = ({
     cpu,
@@ -8,6 +9,8 @@ const ComputerPartSection = ({
     mobo,
     cooler,
     price,
+    setPrice,
+    storageOptions,
     isLoading
 }) => {
     return(
@@ -32,7 +35,7 @@ const ComputerPartSection = ({
                                 <ComputerPart type={'Processor'} partName={cpu}/>
                                 <ComputerPart type={'Memory'} partName={ram}/>
                                 <ComputerPart type={'Graphics Card'} partName={gpu}/>
-                                <ComputerPart type={'Storage'} partName={'1 TB PCIe NVMe M.2 Solid State Drive'}/>
+                                <ComputerPartStorage type={'Storage'} storageOptions={storageOptions} setPrice={setPrice}/>
                                 <ComputerPart type={'Motherboard'} partName={mobo}/>
                                 <ComputerPart type={'Cooler'} partName={cooler}/>
                                 <ComputerPart type={'Operating System'} partName={'Windows 11'}/>

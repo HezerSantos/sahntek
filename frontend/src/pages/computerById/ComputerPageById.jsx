@@ -9,20 +9,33 @@ import axios from 'axios'
 import api from '../../../config'
 import { useEffect } from "react"
 import { useState } from "react"
-const fetchComputerById = async(id, setCpuName, setGpuName, setRamName, setMoboName, setImageUrls, setComputerName, setIsLoading, setCoolerName, setPrice) => {
+const fetchComputerById = async(
+    id, 
+    setCpuName, 
+    setGpuName, 
+    setRamName, 
+    setMoboName, 
+    setImageUrls, 
+    setComputerName, 
+    setIsLoading, 
+    setCoolerName, 
+    setPrice,
+    setStorageOptions
+) => {
     try{
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`)
         const computer = res.data.computer
-        console.log(computer)
-        setComputerName(computer.name)
-        setCpuName(computer.cpu.name)
-        setGpuName(computer.gpu.name)
-        setRamName(computer.ram.name)
-        setMoboName(computer.motherboard.name)
-        setCoolerName(computer.cooler.name)
-        setImageUrls(computer.urls)
+        // console.log(computer)
+        setStorageOptions(computer[1])
+        setComputerName(computer[0].name)
+        setCpuName(computer[0].cpu.name)
+        setGpuName(computer[0].gpu.name)
+        setRamName(computer[0].ram.name)
+        setMoboName(computer[0].motherboard.name)
+        setCoolerName(computer[0].cooler.name)
+        setImageUrls(computer[0].urls)
 
-        const price = Object.values(computer).map(computer => {
+        const price = Object.values(computer[0]).map(computer => {
             if (computer.price){
                 return computer.price
             }
@@ -30,7 +43,7 @@ const fetchComputerById = async(id, setCpuName, setGpuName, setRamName, setMoboN
 
         const filteredPrice = price.filter(price => price !== null && price !== undefined)
 
-        setPrice(filteredPrice.reduce((sum, price) => sum + price, 0))
+        setPrice(filteredPrice.reduce((sum, price) => sum + price, 0) + computer[0].casePrice)
         setIsLoading(false)
     } catch(e){
         console.error(e)
@@ -47,6 +60,7 @@ const ComputerPageById = () => {
     const [ isLoading, setIsLoading ] = useState(true)
 
     const [ currentComputer, setCurrentComputer ] = useState("")
+    const [ storageOptions, setStorageOptions ] = useState("")
     const [ price, setPrice ] = useState("")
     useEffect(() => {
         setCurrentComputer(imageUrls[0])
@@ -54,7 +68,19 @@ const ComputerPageById = () => {
     const { id } = useParams()
     useEffect(() => {
         const fetchData = async() => {
-            await fetchComputerById(id, setCpuName, setGpuName, setRamName, setMoboName, setImageUrls, setComputerName, setIsLoading, setCoolerName, setPrice)
+            await fetchComputerById(
+                id, 
+                setCpuName, 
+                setGpuName, 
+                setRamName, 
+                setMoboName, 
+                setImageUrls, 
+                setComputerName, 
+                setIsLoading, 
+                setCoolerName, 
+                setPrice,
+                setStorageOptions
+            )
         }
 
         fetchData()
@@ -80,6 +106,8 @@ const ComputerPageById = () => {
                       mobo={moboName}
                       cooler={coolerName}
                       price={price}
+                      setPrice={setPrice}
+                      storageOptions={storageOptions}
                       isLoading={isLoading}
                 />
             </main>

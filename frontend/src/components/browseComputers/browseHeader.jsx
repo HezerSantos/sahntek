@@ -15,8 +15,8 @@ const scrollCard = (direction, container) => {
     const leftPadding = parseFloat(containerStyle.paddingLeft) || 0;
     const rightPadding = parseFloat(containerStyle.paddingRight) || 0;
 
-    const gap = parseFloat(containerStyle.gap) || 8;
-    console.log(gap)
+    const gap = parseFloat(containerStyle.gap) || 0;
+
     const scrollDistance = cardWidth + gap + leftPadding + rightPadding;
     container.current?.scrollBy({
         left: direction * scrollDistance,
@@ -35,6 +35,7 @@ const BrowseHeader = ({featuredDeals, isLoading}) => {
                         <div className="browse__advertise" ref={browseAdvertise}>
                             {isLoading? (
                                 <>
+                                    <FeaturedDealSkeleton />
                                     <FeaturedDealSkeleton />
                                     <FeaturedDealSkeleton />
                                 </>

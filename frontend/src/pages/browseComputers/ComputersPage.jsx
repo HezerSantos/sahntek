@@ -35,9 +35,7 @@ const ComputersPage = () => {
     const [ featuredDeals, setFeautredDeals ] = useState([])
     const [ isLoading, setIsLoading ] = useState(true)
 
-    useEffect(() => {
-        console.log(featuredDeals)
-    }, [featuredDeals])
+
     useEffect(() => {
         const fetchData = async() => {
             await fetchAllComputers(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading, setFeautredDeals)

@@ -176,3 +176,27 @@
         justify-self: end;
     }
 }
+
+.storage{
+    align-items: start;
+}
+.storage-container{
+    & > form{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    & > form > div {
+        display: flex;
+        gap: 1rem;
+    }
+
+    & > form > div > input{
+        cursor: pointer;
+    }
+    & > form > div > label{
+        font-family: var(--secondary__font);
+        cursor: pointer;
+    }
+}

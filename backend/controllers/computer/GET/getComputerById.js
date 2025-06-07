@@ -7,12 +7,13 @@ exports.getComputerById = async(req, res, next) => {
         if (isNaN(computerId)){
             throwError("Invalid Computer Id", 404, [{msg: "404 Not Found"}])
         }
-        const computerData = await prisma.computer.findUnique({
+        const computerData = prisma.computer.findUnique({
             where:{
                 id: computerId
             },
             select: {
                 name: true,
+                casePrice: true,
                 cpu: {
                     select:{
                         name: true,
@@ -46,11 +47,24 @@ exports.getComputerById = async(req, res, next) => {
                 urls: true
             }
         })
+
+        const storageOptions = prisma.computerPart.findMany({
+            where: {
+                parttype: 'Storage'
+            },
+            select:{
+                id: true,
+                name: true,
+                price: true
+            }
+        })
+
+        const computerDetails = await Promise.all([computerData, storageOptions])
         if (!computerData){
             throwError("Invalid Computer Id", 404, [{msg: "404 Not Found"}])
         }
         res.json({
-            computer: computerData
+            computer: computerDetails
         })
     } catch(error){
         next(error)
