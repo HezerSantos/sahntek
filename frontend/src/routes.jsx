@@ -2,6 +2,7 @@ import App from "./App";
 import HomePage from "./pages/home/HomePage";
 import ComputersPage from "./pages/browseComputers/ComputersPage";
 import ComputerPageById from "./pages/computerById/ComputerPageById";
+import CartPage from "./pages/Cart/CartPage";
 
 const routes = [
     {
@@ -20,6 +21,10 @@ const routes = [
             {
                 path:'/browse-computers/:id',
                 element: <ComputerPageById />
+            },
+            {
+                path: "/shopping-cart",
+                element: <CartPage />
             }
         ]
     }

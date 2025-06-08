@@ -50,8 +50,9 @@ const ComputersPage = () => {
 
             </Helmet>
             <NavBar />
+            <BrowseHeader featuredDeals={featuredDeals} isLoading={isLoading}/>
             <main className='background__primary'>
-                <BrowseHeader featuredDeals={featuredDeals} isLoading={isLoading}/>
+                
                 <PromotionalBanner />
                 <ComputerSection 
                     className={"computer__section"} 

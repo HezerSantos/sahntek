@@ -42,7 +42,7 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link>
+                            <Link to={'/shopping-cart'}>
                                 Cart
                             </Link>
                         </li>
@@ -74,7 +74,7 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link>
+                            <Link to={'/shopping-cart'}>
                                 Cart
                             </Link>
                         </li>

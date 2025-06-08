@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import ComputerCard from "./ComputerCard"
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 import computerImage1 from '../../assets/images/computerImage.PNG'
@@ -15,8 +15,7 @@ const scrollCard = (direction, container) => {
     const leftPadding = parseFloat(containerStyle.paddingLeft) || 0;
     const rightPadding = parseFloat(containerStyle.paddingRight) || 0;
 
-    const gap = parseFloat(containerStyle.gap) || 0;
-
+    const gap = parseFloat(containerStyle.columnGap) || 0;
     const scrollDistance = cardWidth + gap + leftPadding + rightPadding;
     container.current?.scrollBy({
         left: direction * scrollDistance,
@@ -25,10 +24,12 @@ const scrollCard = (direction, container) => {
 }
 const BrowseHeader = ({featuredDeals, isLoading}) => {
     const browseAdvertise = useRef(null)
-
+    useEffect(() => {
+        console.log(featuredDeals)
+    }, [featuredDeals])
     return(
         <>
-            <header className="browse__header">
+            <header className="browse__header background__primary">
                 <section className="browse__header__content"> 
                     <h1 className="browse__header__header">Featured PC Deals</h1>
                     <div className="browse__advertise__wrapper">

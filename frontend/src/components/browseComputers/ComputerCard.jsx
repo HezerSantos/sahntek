@@ -9,7 +9,7 @@ const ComputerCard = ({id, name, url}) => {
                     <Link className='card__header' to={`/browse-computers/${id}`}>
                         {name}
                     </Link>
-                    <h1 className='card__price'>From $1500</h1>
+                    
                     <button onClick={() => navigate(`/browse-computers/${id}`)} className='card__button'>Explore</button>
                 </div>
             </div>

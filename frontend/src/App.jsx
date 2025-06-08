@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import axios from "axios"
 import './index.css'
 import api from '../config'
+import { CartProvider } from './context/CartContext/CartProvider'
 function App() {
     if(import.meta.env.VITE_NODE_ENV === 'production'){
         useEffect(() => {
@@ -28,7 +29,9 @@ function App() {
 
 
     return (
-        <Outlet />
+        <CartProvider>
+          <Outlet />
+        </CartProvider>
     )
 }
 
