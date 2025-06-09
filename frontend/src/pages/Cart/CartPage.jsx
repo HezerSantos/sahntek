@@ -8,7 +8,7 @@ const CartPage = () => {
     const { shoppingCart, setShoppingCart } = useContext(CartContext)
 
     useEffect(() => {
-        console.log(shoppingCart)
+        // console.log(shoppingCart)
     }, [])
     return(
         <>

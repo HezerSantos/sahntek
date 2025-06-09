@@ -1,7 +1,23 @@
+import { useContext, useState } from "react"
 import ComputerPart from "./ComputerPart"
 import ComputerPartSkeleton from "./ComputerPartSkeleton"
 import ComputerPartStorage from "./ComputerPartStorage"
+import { CartContext } from "../../context/CartContext/CartContext"
 
+const handleCartSubmit = (addToCart, id, storageSelected, currentComputer, price, computerName) => {
+    const item = {
+        id: id,
+        name: computerName,
+        price: price,
+        content: {
+            color: currentComputer.color,
+            imageUrl: currentComputer.url,
+            storageSelected: storageSelected
+        }
+    }
+
+    addToCart(item)
+}
 const ComputerPartSection = ({
     cpu,
     ram,
@@ -11,8 +27,16 @@ const ComputerPartSection = ({
     price,
     setPrice,
     storageOptions,
-    isLoading
+    isLoading,
+    id,
+    setStorageSelected,
+    storageSelected,
+    currentComputer,
+    computerName
 }) => {
+    const { addToCart } = useContext(CartContext)
+
+
     return(
         <>
             <section className="computer__part__section">
@@ -35,7 +59,7 @@ const ComputerPartSection = ({
                                 <ComputerPart type={'Processor'} partName={cpu}/>
                                 <ComputerPart type={'Memory'} partName={ram}/>
                                 <ComputerPart type={'Graphics Card'} partName={gpu}/>
-                                <ComputerPartStorage type={'Storage'} storageOptions={storageOptions} setPrice={setPrice}/>
+                                <ComputerPartStorage type={'Storage'} storageOptions={storageOptions} setPrice={setPrice} setStorageSelected={setStorageSelected}/>
                                 <ComputerPart type={'Motherboard'} partName={mobo}/>
                                 <ComputerPart type={'Cooler'} partName={cooler}/>
                                 <ComputerPart type={'Operating System'} partName={'Windows 11'}/>
@@ -53,7 +77,7 @@ const ComputerPartSection = ({
                         ) : (
                             <>
                                 <h1>${price}</h1>
-                                <button>
+                                <button onClick={() => handleCartSubmit(addToCart, id, storageSelected, currentComputer, price, computerName)}>
                                     Add to Cart
                                 </button>
                             </>

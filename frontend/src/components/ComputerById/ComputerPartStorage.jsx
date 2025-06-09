@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
-const handleSelect = (e, setPrice, prevStoragePrice, setPrevStoragePrice) => {
+const handleSelect = (e, setPrice, prevStoragePrice, setPrevStoragePrice, setStorageSelected) => {
     const storagePrice = e.target.value.split(" ")[1]
     setPrice(prevPrice => Number(storagePrice) + prevPrice - prevStoragePrice)
     setPrevStoragePrice(Number(storagePrice))
+
+    setStorageSelected(e.target.id)
 }
-const ComputerPartStorage = ({ type, storageOptions, setPrice }) => {
+const ComputerPartStorage = ({ type, storageOptions, setPrice, setStorageSelected }) => {
     const [ prevStoragePrice, setPrevStoragePrice ] = useState(0)
     const formElement = useRef(null)
     useEffect(() => {
@@ -15,6 +17,8 @@ const ComputerPartStorage = ({ type, storageOptions, setPrice }) => {
         setPrice(prevPrice => {
             return Number(storagePrice) + prevPrice
         })
+        
+        setStorageSelected(formElement.current.children[0].children[1].id)
     }, [storageOptions])
     return (
         <>
@@ -31,7 +35,7 @@ const ComputerPartStorage = ({ type, storageOptions, setPrice }) => {
                                     id={option.name} 
                                     name="storage" 
                                     value={`${option.id} ${option.price}`}
-                                    onChange={(e) => handleSelect(e, setPrice, prevStoragePrice, setPrevStoragePrice)}
+                                    onChange={(e) => handleSelect(e, setPrice, prevStoragePrice, setPrevStoragePrice, setStorageSelected)}
                                     />
                                 </div>
                             )

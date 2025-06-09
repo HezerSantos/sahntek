@@ -24,9 +24,9 @@ const scrollCard = (direction, container) => {
 }
 const BrowseHeader = ({featuredDeals, isLoading}) => {
     const browseAdvertise = useRef(null)
-    useEffect(() => {
-        console.log(featuredDeals)
-    }, [featuredDeals])
+    // useEffect(() => {
+    //     console.log(featuredDeals)
+    // }, [featuredDeals])
     return(
         <>
             <header className="browse__header background__primary">

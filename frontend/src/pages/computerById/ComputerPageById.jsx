@@ -62,6 +62,9 @@ const ComputerPageById = () => {
     const [ currentComputer, setCurrentComputer ] = useState("")
     const [ storageOptions, setStorageOptions ] = useState("")
     const [ price, setPrice ] = useState("")
+
+    const [ storageSelected, setStorageSelected ] = useState("")
+
     useEffect(() => {
         setCurrentComputer(imageUrls[0])
     }, [imageUrls])
@@ -109,6 +112,11 @@ const ComputerPageById = () => {
                       setPrice={setPrice}
                       storageOptions={storageOptions}
                       isLoading={isLoading}
+                      id={id}
+                      setStorageSelected={setStorageSelected}
+                      storageSelected={storageSelected}
+                      currentComputer={currentComputer}
+                      computerName={computerName}
                 />
             </main>
             <Footer />
