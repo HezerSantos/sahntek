@@ -4,6 +4,7 @@
     min-width: 20rem;
     display: flex;
     justify-content: center;
+    min-height: 92vh;
 }
 
 .shopping-cart__cart-section{
@@ -16,6 +17,7 @@
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    max-height: max-content;
     & > h1{
         font-family: var(--main__font);
         font-weight: 500;
@@ -98,3 +100,5 @@
         padding: 0;
     }
 }
+
+

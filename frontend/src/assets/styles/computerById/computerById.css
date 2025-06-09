@@ -200,3 +200,57 @@
         cursor: pointer;
     }
 }
+
+
+.shopping-cart-notification{
+    position: fixed;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    width: 20rem;
+    padding: .5rem;
+    column-gap: 1rem;
+    background-color: rgb(231, 231, 231);
+    border-radius: 1rem;
+    box-shadow: 0 5px 10px var(--shadow);
+    top: 10vh;
+    right: 5%;
+    z-index: 5;
+    border: none;
+
+    &:hover{
+        opacity: 80%;
+    }
+    & > img{
+        width: 80%;
+        align-self: center;
+        justify-self: center;
+    }
+
+    & > div > p{
+        font-family: var(--secondary__font);
+        font-size: .8rem;
+        width: fit-content;
+    }
+
+    animation: notification 2s ease-in-out 1;
+}
+
+@keyframes notification {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+@media (max-width: 390px){
+    .shopping-cart-notification{
+        right: auto;
+        left: 50%;
+        transform: translate(-50%);
+    }
+}

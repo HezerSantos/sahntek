@@ -11,7 +11,7 @@ const CartPage = () => {
         // console.log(shoppingCart)
     }, [])
     return(
-        <>
+        <> 
             <ShoppingCartHeader />
             <ShoppingCartMain />
             <Footer />

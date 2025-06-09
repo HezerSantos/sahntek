@@ -9,6 +9,8 @@ import axios from 'axios'
 import api from '../../../config'
 import { useEffect } from "react"
 import { useState } from "react"
+
+import CartNotification from "../../components/shoppingCart/CartNotification"
 const fetchComputerById = async(
     id, 
     setCpuName, 
@@ -65,6 +67,7 @@ const ComputerPageById = () => {
 
     const [ storageSelected, setStorageSelected ] = useState("")
 
+    const [ isNotification, setIsNotification ] = useState(false)
     useEffect(() => {
         setCurrentComputer(imageUrls[0])
     }, [imageUrls])
@@ -90,6 +93,9 @@ const ComputerPageById = () => {
     }, [])
     return(
         <>
+            {isNotification && (
+                <CartNotification imageUrl={currentComputer.url} setIsNotification={setIsNotification}/>
+            )}
             <Helmet>
                 <title>Computer {id} - Sahntek</title>
             </Helmet>
@@ -102,6 +108,7 @@ const ComputerPageById = () => {
                 setCurrentComputer={setCurrentComputer}
             />
             <main className="background__primary">
+
                 <ComputerPartSection 
                       cpu={cpuName}
                       gpu={gpuName}
@@ -117,6 +124,7 @@ const ComputerPageById = () => {
                       storageSelected={storageSelected}
                       currentComputer={currentComputer}
                       computerName={computerName}
+                      setIsNotification={setIsNotification}
                 />
             </main>
             <Footer />

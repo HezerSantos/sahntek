@@ -4,19 +4,26 @@ import ComputerPartSkeleton from "./ComputerPartSkeleton"
 import ComputerPartStorage from "./ComputerPartStorage"
 import { CartContext } from "../../context/CartContext/CartContext"
 
-const handleCartSubmit = (addToCart, id, storageSelected, currentComputer, price, computerName) => {
+const handleCartSubmit = (addToCart, id, storageSelected, currentComputer, price, computerName, setIsNotification, setIsDisabled) => {
+    setIsDisabled(true)
+    setIsNotification(false)
     const item = {
-        id: id,
-        name: computerName,
-        price: price,
+        key: `C${id}-${currentComputer.color}-${storageSelected}`.replace(/\s+/g, '').trim(),
         content: {
+            id: id,
+            name: computerName,
+            quantity: 1,
+            price: price,
             color: currentComputer.color,
             imageUrl: currentComputer.url,
             storageSelected: storageSelected
         }
     }
-
+    setIsNotification(true)
     addToCart(item)
+    setTimeout(() => {
+        setIsDisabled(false)
+    }, 1800)
 }
 const ComputerPartSection = ({
     cpu,
@@ -32,10 +39,11 @@ const ComputerPartSection = ({
     setStorageSelected,
     storageSelected,
     currentComputer,
-    computerName
+    computerName,
+    setIsNotification
 }) => {
     const { addToCart } = useContext(CartContext)
-
+    const [ isDisabled, setIsDisabled ] = useState(false)
 
     return(
         <>
@@ -77,7 +85,10 @@ const ComputerPartSection = ({
                         ) : (
                             <>
                                 <h1>${price}</h1>
-                                <button onClick={() => handleCartSubmit(addToCart, id, storageSelected, currentComputer, price, computerName)}>
+                                <button 
+                                    disabled={isDisabled}
+                                    onClick={() => handleCartSubmit(addToCart, id, storageSelected, currentComputer, price, computerName, setIsNotification, setIsDisabled)}
+                                >
                                     Add to Cart
                                 </button>
                             </>

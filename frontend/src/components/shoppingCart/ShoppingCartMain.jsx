@@ -7,14 +7,14 @@ const ShoppingCartMain = () => {
     const [ isLoading, setIsLoading ] = useState(true)
     useEffect(() => {
         setShoppingCart(() => {
-            const cart = JSON.parse(localStorage.getItem('cart'))
+            const cart = new Map(JSON.parse(localStorage.getItem('cart')))
             return cart
         })
         setIsLoading(false)
     }, [])
 
     useEffect(() => {
-        console.log(shoppingCart)
+
     }, [shoppingCart])
     return (
         <>
@@ -28,13 +28,11 @@ const ShoppingCartMain = () => {
                             <CartItemSkeleton />
                         </>
                     ) : (
-                        shoppingCart.map((item, index) => {
+                        [...shoppingCart].map(( [ key, value ], index) => {
                             return(
                                 <CartItem 
-                                    key={`${item.name}${item.id}${item.content.color}`}
-                                    content={item.content}
-                                    price={item.price}
-                                    name={item.name}
+                                    key={key}
+                                    content={value}
                                 />
                             )
                         })
