@@ -3,7 +3,7 @@ import ComputerPart from "./ComputerPart"
 import ComputerPartSkeleton from "./ComputerPartSkeleton"
 import ComputerPartStorage from "./ComputerPartStorage"
 import { CartContext } from "../../context/CartContext/CartContext"
-
+import { AiOutlineLoading } from "react-icons/ai";
 const handleCartSubmit = (addToCart, id, storageSelected, currentComputer, price, computerName, setIsNotification, setIsDisabled) => {
     setIsDisabled(true)
     setIsNotification(false)
@@ -89,7 +89,13 @@ const ComputerPartSection = ({
                                     disabled={isDisabled}
                                     onClick={() => handleCartSubmit(addToCart, id, storageSelected, currentComputer, price, computerName, setIsNotification, setIsDisabled)}
                                 >
-                                    Add to Cart
+                                    {isDisabled? (
+                                        <AiOutlineLoading className="loading"/>
+                                    ) : (
+                                        <>
+                                            Add to Cart
+                                        </>
+                                    )}
                                 </button>
                             </>
                         )}

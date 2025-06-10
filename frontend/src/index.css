@@ -520,3 +520,18 @@ footer{
         justify-self: center;
     }
 }
+
+.loading{
+  width: 2rem;
+  height: 2rem;
+  animation: loading 1s ease-in-out infinite;
+}
+
+@keyframes loading{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}

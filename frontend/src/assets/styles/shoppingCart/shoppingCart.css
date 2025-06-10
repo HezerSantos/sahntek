@@ -23,6 +23,10 @@
         font-weight: 500;
         font-size: 2rem
     }
+
+    & > p{
+        font-family: var(--secondary__font);
+    }
 }
 
 .cart-item{
@@ -52,6 +56,8 @@
         font-family: var(--secondary__font);
     }
 
+
+
     & > p:last-child{
         font-weight: 900
     }
@@ -61,6 +67,7 @@
     margin-bottom: auto;
     display: flex;
     justify-content: end;
+    gap: 1rem;
     & > button{
         
         padding: .8rem 1.5rem .8rem 1.5rem;
@@ -101,4 +108,32 @@
     }
 }
 
+
+.cart-item-quantity{
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    border: 2px solid var(--primary__color);
+    width: max-content;
+    padding: .5rem 1rem .5rem 1rem;
+    border-radius: .4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > button{
+        font-family: var(--secondary__font);
+        border: none;
+        background-color: transparent;
+        font-size: 1rem;
+    }
+    & > input{
+        background-color: transparent;
+        border: none;
+        width: 3rem;
+        text-align: center;
+
+        &:focus{
+            outline: none;
+        }
+    }
+}
 

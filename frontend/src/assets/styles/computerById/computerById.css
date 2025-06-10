@@ -154,10 +154,11 @@
         font-weight: bold;
         border: none;
         border-radius: .5rem;
-
-        &:hover{
-
-        }
+        min-width: 9.54rem;
+        max-height: 3.125rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
