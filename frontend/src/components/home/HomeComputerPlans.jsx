@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom"
+
 const HomeComputerPlans = () => {
+    const navigate = useNavigate()
     return(
         <>
-            <section className="home__computer__plans">
+            <section className="home__computer__plans" id="computer-plans">
                 <div>
                     <div className="home__computer__card basic">
                         <div>
@@ -33,7 +36,7 @@ const HomeComputerPlans = () => {
                             </li>
                         </ul>
 
-                        <button className="basic__price">
+                        <button className="basic__price" onClick={() => navigate('/browse-computers')}>
                             Explore
                         </button>
                     </div>
@@ -67,7 +70,7 @@ const HomeComputerPlans = () => {
                             </li>
                         </ul>
 
-                        <button className="medium__price">
+                        <button className="medium__price" onClick={() => navigate('/browse-computers')}>
                             Explore
                         </button>
                     </div>
@@ -101,7 +104,7 @@ const HomeComputerPlans = () => {
                             </li>
                         </ul>
 
-                        <button className="advanced__price">
+                        <button className="advanced__price" onClick={() => navigate('/browse-computers')}>
                             Explore
                         </button>
                     </div>

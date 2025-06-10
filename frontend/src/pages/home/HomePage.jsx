@@ -7,7 +7,12 @@ import HomeSectionAdvance from '../../components/home/HomeSectionAdvance'
 import Footer from '../../components/universal/Footer'
 
 import NavBar from '../../components/universal/NavBar'
+import { useEffect } from 'react'
 const HomePage = () => {
+
+    useEffect(() => {
+        window.scrollTo({ top: 0});
+    }, [])
     return(
         <>  <Helmet>
                 <title>Home - Sahntek</title>

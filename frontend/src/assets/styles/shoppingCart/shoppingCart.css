@@ -26,6 +26,12 @@
 
     & > p{
         font-family: var(--secondary__font);
+
+
+        & > a{
+            color: var(--primary__color);
+            text-decoration: underline;
+        }
     }
 }
 

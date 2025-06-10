@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import CartItem from "./CartItem"
 import CartItemSkeleton from "./CartItemSkeleton"
+import { Link } from "react-router-dom"
 
 const ShoppingCartMain = () => {
     const [ shoppingCart, setShoppingCart ] = useState(new Map())
@@ -53,7 +54,7 @@ const ShoppingCartMain = () => {
                     ) : (
                         isEmpty? (
                             <>
-                                <p>Your Cart is Empty</p>
+                                <p>Your Cart is Empty <Link to="/browse-computers">Shop Now!</Link></p>
                             </>
                         ) : (
                             [...shoppingCart].map(( [ key, value ], index) => {

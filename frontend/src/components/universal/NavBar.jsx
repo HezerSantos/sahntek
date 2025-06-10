@@ -37,11 +37,6 @@ const NavBar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link>
-                                Login
-                            </Link>
-                        </li>
-                        <li>
                             <Link to={'/shopping-cart'}>
                                 Cart
                             </Link>
@@ -66,11 +61,6 @@ const NavBar = () => {
                         <li>
                             <Link to='/browse-computers'>
                                 Browse Computers
-                            </Link>
-                        </li>
-                        <li>
-                            <Link>
-                                Login
                             </Link>
                         </li>
                         <li>

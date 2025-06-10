@@ -41,6 +41,7 @@ const ComputersPage = () => {
             await fetchAllComputers(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading, setFeautredDeals)
         }
         fetchData()
+        window.scrollTo({ top: 0 });
     }, [])
 
     return(

@@ -1,3 +1,7 @@
+const scrollToShop = () => {
+    const section = document.querySelector("#computer-plans")
+    section.scrollIntoView({ behavior: 'smooth' })
+}
 const HomeHero = () => {
     return(
         <>
@@ -7,7 +11,7 @@ const HomeHero = () => {
                         <h1>WE SPEAK <span>PERFORMANCE</span></h1>
                         <p>Custom-built for unbeatable <span>speed</span> and <span>reliability</span></p>
                     </div>
-                    <button>
+                    <button onClick={() => scrollToShop()}>
                         Shop Now
                     </button>
                 </div>
