@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 import CartItem from "./CartItem"
 import CartItemSkeleton from "./CartItemSkeleton"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const ShoppingCartMain = () => {
     const [ shoppingCart, setShoppingCart ] = useState(new Map())
     const [ isLoading, setIsLoading ] = useState(true)
     const shoppingCartSection = useRef(null)
     const [ isEmpty, setIsEmpty ] = useState(false)
+    const [ totalItems, setTotalItems ] = useState(0)
+    const [ totalPrice, setTotalPrice ] = useState(0.00)
+    const navigate = useNavigate()
     useEffect(() => {
         setShoppingCart(() => {
             const cart = new Map(JSON.parse(localStorage.getItem('cart')))
@@ -38,7 +41,23 @@ const ShoppingCartMain = () => {
     }, [])
 
     useEffect(() => {
-1
+            const cartValues = [...shoppingCart]
+            const allPrices = cartValues.map(([key, content]) => {
+                return {
+                    quantity: content.quantity, 
+                    price: content.price
+                }
+            })
+            const totalPrice = allPrices.map(({ quantity, price}) => {
+                return quantity * price
+            }).reduce((sum, price) => sum + price, 0)
+            const totalItems = allPrices.map(({ quantity }) => {
+                return quantity
+            }).reduce((sum, quantity) => sum + quantity, 0)
+
+            setTotalItems(totalItems)
+            setTotalPrice(totalPrice)
+            
     }, [shoppingCart])
     return (
         <>
@@ -63,12 +82,24 @@ const ShoppingCartMain = () => {
                                         key={key}
                                         itemKey={key}
                                         contentO={value}
+                                        setShoppingCart={setShoppingCart}
                                     />
                                 )
                             })
                         )
                     )}
+                    <div className="shopping-cart-submit">
+                        <p>Subtotal {`(${totalItems} items): $${totalPrice.toFixed(2)}`}</p>
+                        { totalItems > 0? (
+                            <button className="shopping-cart-submit">Proceed to Checkout</button>
+                        ) : (
+                            <button className="shopping-cart-submit" onClick={() => navigate('/browse-computers')}>Continue Shopping</button>
+                        )}
+
+                        
+                    </div>
                 </section>
+                
             </main>
         </>
     )
