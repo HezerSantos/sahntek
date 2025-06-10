@@ -4,13 +4,22 @@ import './index.css'
 import { HelmetProvider } from 'react-helmet-async'
 import routes from './routes.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { CsrfProvider } from './context/CsrfContext/CsrfProvider.jsx'
+import { ErrorProvider } from './context/ErrorContext/ErrorProvider.jsx'
 
 const router = createBrowserRouter(routes)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <HelmetProvider>
-      <RouterProvider router={router} />
-    </HelmetProvider>
+      <CsrfProvider>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </CsrfProvider>
   </StrictMode>
+    // <CsrfProvider>
+    //   <HelmetProvider>
+    //     <RouterProvider router={router} />
+    //   </HelmetProvider>
+    // </CsrfProvider>
 )

@@ -10,38 +10,40 @@ const openNavbar = (sideNav) => {
 const closeNavbar = (sideNav) => {
     sideNav.current?.classList.remove('navbar__side__open')
 }
-const NavBar = () => {
+const NavBar = ({hide}) => {
     const navBarSide = useRef(null)
     return(
         <>
-            <nav className="navbar__main">
-                <div className="navbar__header">
-                    <img src={logo} alt="logo"/>
-                    <p>SAHNTEK</p>
-                    <button className="navbar__side__toggle" onClick={() => openNavbar(navBarSide)}>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </button>
-                </div>
-                <div className="navbar__links">
-                    <ul>
-                        <li>
-                            <Link to={'/'}>
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'/browse-computers'}> 
-                                Browse Computers
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to={'/shopping-cart'}>
-                                Cart
-                            </Link>
-                        </li>
-                    </ul>
+            <nav className={`navbar__main ${hide? 'auto' : ''}`}>
+                <div>
+                    <div className="navbar__header">
+                        <img src={logo} alt="logo"/>
+                        <p>SAHNTEK</p>
+                        <button className="navbar__side__toggle" onClick={() => openNavbar(navBarSide)}>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </button>
+                    </div>
+                    <div className="navbar__links">
+                        <ul>
+                            <li>
+                                <Link to={'/'}>
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={'/browse-computers'}> 
+                                    Browse Computers
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to={'/shopping-cart'}>
+                                    Cart
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
             <nav className="navbar__side" ref={navBarSide}>

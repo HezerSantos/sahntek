@@ -7,7 +7,6 @@ app.set('trust proxy', true);
 const corsMiddleware = require("./middleware/corsMiddleware");
 const helmetMiddleware = require("./middleware/helmetMiddleware");
 const { passport } = require("./config/passport");
-const staticMiddleware = require("./middleware/staticMiddleware");
 const cookieParserMiddleware = require("./middleware/cookieParserMiddleware");
 const bodyParserMiddleware = require("./middleware/bodyParserMiddleware");
 const { errorMiddleware } = require("./middleware/errors/errorMiddleware");
@@ -23,10 +22,7 @@ app.use(bodyParserMiddleware);
 app.use(corsMiddleware);
 app.use(helmetMiddleware);
 app.use(passport.initialize());
-app.use(staticMiddleware);
-// View Engine Setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+
 // Routers
 const logoutRouter = require("./routes/auth/logoutRouter");
 const loginRouter = require("./routes/auth/loginRouter");
@@ -40,8 +36,8 @@ app.use("/api/auth/csrf", csrf)
 // app.use("/api/auth/refresh",validateRefreshCsrf, refreshRouter);
 
 // Logout Route
-app.use("/api/logout", logoutRouter)
-app.use("/api/computers", computerRouter)
+// app.use("/api/logout", logoutRouter)
+app.use("/api/computers", validateCsrf, computerRouter)
 app.use(errorMiddleware)
 // Server
 app.listen(8080, () => {

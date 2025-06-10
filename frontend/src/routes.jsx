@@ -3,12 +3,13 @@ import HomePage from "./pages/home/HomePage";
 import ComputersPage from "./pages/browseComputers/ComputersPage";
 import ComputerPageById from "./pages/computerById/ComputerPageById";
 import CartPage from "./pages/Cart/CartPage";
+import UniversalError from "./pages/Errors/UniversalError";
 
 const routes = [
     {
         path: "/",
         element: <App/>,
-        errorElement: null,
+        errorElement: <UniversalError />,
         children: [
             {
                 index: true,

@@ -7,10 +7,12 @@ import ComputerPartSection from "../../components/ComputerById/ComputerPartSecti
 import Footer from '../../components/universal/Footer'
 import axios from 'axios'
 import api from '../../../config'
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { useState } from "react"
 
 import CartNotification from "../../components/shoppingCart/CartNotification"
+import { ErrorContext } from "../../context/ErrorContext/ErrorContext"
+import { CsrfContext } from "../../context/CsrfContext/CsrfContext"
 const fetchComputerById = async(
     id, 
     setCpuName, 
@@ -22,10 +24,17 @@ const fetchComputerById = async(
     setIsLoading, 
     setCoolerName, 
     setPrice,
-    setStorageOptions
+    setStorageOptions,
+    setError,
+    setErrorFlag,
+    csrfToken
 ) => {
     try{
-        const res = await axios.get(`${api.apiUrl}/api/computers/${id}`)
+        const res = await axios.get(`${api.apiUrl}/api/computers/${id}`, {
+            headers: {
+                csrftoken: csrfToken
+            }
+        })
         const computer = res.data.computer
         // console.log(computer)
         setStorageOptions(computer[1])
@@ -48,7 +57,8 @@ const fetchComputerById = async(
         setPrice(filteredPrice.reduce((sum, price) => sum + price, 0) + computer[0].casePrice)
         setIsLoading(false)
     } catch(e){
-        console.error(e)
+        setError(e)
+        setErrorFlag(true)
     }
 }
 const ComputerPageById = () => {
@@ -68,6 +78,9 @@ const ComputerPageById = () => {
     const [ storageSelected, setStorageSelected ] = useState("")
 
     const [ isNotification, setIsNotification ] = useState(false)
+
+    const { setError, setErrorFlag } = useContext(ErrorContext)
+    const { csrfToken } = useContext(CsrfContext)
     useEffect(() => {
         setCurrentComputer(imageUrls[0])
     }, [imageUrls])
@@ -85,7 +98,10 @@ const ComputerPageById = () => {
                 setIsLoading, 
                 setCoolerName, 
                 setPrice,
-                setStorageOptions
+                setStorageOptions,
+                setError,
+                setErrorFlag,
+                csrfToken
             )
         }
 

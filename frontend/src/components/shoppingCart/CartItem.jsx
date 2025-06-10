@@ -37,9 +37,11 @@ const removeItem = (setIsItem, itemKey, setShoppingCart) => {
     localStorage.setItem('cart', JSON.stringify([...cart]))
     setShoppingCart(cart)
 }
+
 const CartItem = ({itemKey, contentO, setShoppingCart}) => {
     const [ content, setContent ] = useState(contentO)
     const [ isItem, setIsItem ] = useState(true)
+    
     return(
         <>
             {isItem && (
@@ -62,7 +64,7 @@ const CartItem = ({itemKey, contentO, setShoppingCart}) => {
                             <p>${content.price * content.quantity}</p>
                         </div>
                         <div className='cart-item__button-container'>
-                            <button onClick={() => removeItem(setIsItem, itemKey)}>
+                            <button onClick={() => removeItem(setIsItem, itemKey, setShoppingCart)}>
                                 Remove
                             </button>
                         </div>

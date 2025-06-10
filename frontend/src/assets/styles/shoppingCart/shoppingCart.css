@@ -4,6 +4,7 @@
     min-width: 20rem;
     display: flex;
     min-height: 92vh;
+    justify-content: center;
 }
 
 .shopping-cart__cart-section{

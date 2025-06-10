@@ -42,19 +42,27 @@ a{
   --con__dot: #BD2020;
 }
 
+
 .navbar__main{
   z-index: 10;
   position: fixed;
-  width: 100vw;
   height: auto;
   min-height: 8vh;
+  width: 100%;
   background-color: var(--primary__color);
-  box-shadow: 0 5px 15px var(--shadow) !important;
-  padding-left: 10%;
-  padding-right: 10%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  box-shadow: 0 5px 15px var(--shadow);
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
   min-width: 20rem;
+  justify-content: center;
+  
+  & > div{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 120rem;
+  }
 
   & div.navbar__links{
 
@@ -86,6 +94,11 @@ a{
       font-weight: bold;
     }
   }
+}
+
+.auto{
+  box-shadow: none;
+  position: relative;
 }
 
 .navbar__side__toggle{
@@ -533,5 +546,42 @@ footer{
   }
   100%{
     transform: rotate(360deg);
+  }
+}
+
+.error-main{
+  height: calc(100vh - 8vh - 16.562rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  & > svg{
+    stroke: white;
+    fill: white;
+    height: 5rem;
+    width: 5rem;
+  }
+
+  & > p{
+    font-family: var(--secondary__font);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  & > h1{
+    color: white;
+    font-family: var(--secondary__font);
+  }
+
+  & > button{
+    padding: 1rem 2rem 1rem 2rem;
+    font-family: var(--secondary__font);
+    color: white;
+    background-color: var(--secondary__color);
+    border: none;
+    border-radius: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
   }
 }

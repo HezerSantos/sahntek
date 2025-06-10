@@ -7,13 +7,29 @@ import PromotionalBanner from '../../components/browseComputers/promotionalBanne
 import ComputerSection from '../../components/browseComputers/ComputerSection'
 import axios from 'axios'
 import api from '../../../config'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import DebugConsole from '../../components/debug'
 import { Helmet } from 'react-helmet-async'
-const fetchAllComputers = async(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading, setFeautredDeals)=> {
+import { CsrfContext } from '../../context/CsrfContext/CsrfContext'
+import { ErrorContext } from '../../context/ErrorContext/ErrorContext'
+const fetchAllComputers = async(
+    setProComputers, 
+    setAdvancedComputers, 
+    setPremiumComputers, 
+    setIsLoading, 
+    setFeautredDeals, 
+    csrfToken,
+    setErrorFlag,
+    setError
+)=> {
     try{
         // console.time("fetch")
-        const res = await axios.get(`${api.apiUrl}/api/computers`)
+        
+        const res = await axios.get(`${api.apiUrl}/api/computers`, {
+            headers: {
+                csrftoken: csrfToken
+            } 
+        })
         // console.log(res)
         // console.timeEnd("fetch")
         const randomComputerOne = res.data.pro[Math.floor(Math.random() * res.data.pro.length)] 
@@ -25,9 +41,12 @@ const fetchAllComputers = async(setProComputers, setAdvancedComputers, setPremiu
         setPremiumComputers(res.data.premium)
         setIsLoading(false)
     }catch(e){
-        console.error(e)
+        setError(e)
+        setErrorFlag(true)
     }
 }
+
+
 const ComputersPage = () => {
     const [ proComputers, setProComputers ] = useState([])
     const [ advancedComputers, setAdvancedComputers ] = useState([])
@@ -35,10 +54,22 @@ const ComputersPage = () => {
     const [ featuredDeals, setFeautredDeals ] = useState([])
     const [ isLoading, setIsLoading ] = useState(true)
 
+    const { csrfToken } = useContext(CsrfContext)
 
+    const  { setError, setErrorFlag } = useContext(ErrorContext)
+    
     useEffect(() => {
         const fetchData = async() => {
-            await fetchAllComputers(setProComputers, setAdvancedComputers, setPremiumComputers, setIsLoading, setFeautredDeals)
+            await fetchAllComputers(
+                setProComputers, 
+                setAdvancedComputers, 
+                setPremiumComputers, 
+                setIsLoading, 
+                setFeautredDeals, 
+                csrfToken, 
+                setErrorFlag,
+                setError
+            )
         }
         fetchData()
         window.scrollTo({ top: 0 });
@@ -48,6 +79,15 @@ const ComputersPage = () => {
         <>
             <Helmet>
                 <title>Browse Computers - Sahntek</title>
+                <meta name="robots" content="index, follow"/>
+                <meta name="description" content="Discover unbeatable performance and prices with our custom-built PC deals. Explore high-end, affordable builds with the latest components for gaming, productivity, and everything in between."/>
+                <meta name="keywords" content="custom PCs, gaming PCs, budget PCs, computer builds, gaming deals, computer components, PC deals, gaming setup, affordable computers, high-performance PCs"/>
+
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="SAHNTEK - Featured PC Deals" />
+                <meta property="og:description" content="Unlock incredible performance at unbeatable prices with our featured PC deals. Explore custom-built PCs for gaming and productivity, starting at just $500!" />
+                <meta property="og:image" content="https://sahntek.hallowedvisions.com/PC12/MUSETEX%20ATX%20PC%20Case%20Y%20Black%20PC12.webp" />
+                <meta property="og:url" content="https://www.sahntek.com" />
 
             </Helmet>
             <NavBar />
