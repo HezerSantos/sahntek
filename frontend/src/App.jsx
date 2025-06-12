@@ -7,10 +7,14 @@ import { CartProvider } from './context/CartContext/CartProvider'
 import { jwtDecode } from 'jwt-decode'
 import { CsrfContext } from './context/CsrfContext/CsrfContext'
 import { ErrorProvider } from './context/ErrorContext/ErrorProvider'
+import { ErrorContext } from './context/ErrorContext/ErrorContext'
 
 function App() {
   const { setCsrfToken } = useContext(CsrfContext)
   const [ isLoading, setIsLoading ] = useState(true)
+
+  const { setErrorFlag, setError } = useContext(ErrorContext)
+
     if(import.meta.env.VITE_NODE_ENV === 'production'){
         useEffect(() => {
             console.error = () => {};
@@ -29,8 +33,12 @@ function App() {
 
             setCsrfToken(token.csrf)
             setIsLoading(false)
-          } catch (e) { console.error(e)}
+          } catch (e) { 
+            setError(e)
+            setErrorFlag(true)
+          }
         }
+
         getCsrf()
         const interval = setInterval(() => {
           console.log('New Csrf')
@@ -43,13 +51,10 @@ function App() {
 
     return (
         <>
-          {!isLoading && (
-            <ErrorProvider>
-                <CartProvider>
-                  <Outlet />
-                </CartProvider>
-            </ErrorProvider>
-            
+          {!isLoading && (     
+              <CartProvider>
+                <Outlet />
+              </CartProvider>
           )}
         </>
     )

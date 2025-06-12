@@ -1,4 +1,22 @@
 const prisma = require('../../../config/prisma')
+require('dotenv').config()
+
+
+const { S3Client, GetObjectCommand } = require('@aws-sdk/client-s3')
+
+const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+
+const S3 = new S3Client({
+  region: "auto",
+  endpoint: `https://${process.env.CF_ID}.r2.cloudflarestorage.com`,
+  credentials: {
+    accessKeyId: process.env.CF_ACCESS,
+    secretAccessKey: process.env.CF_SECRET,
+  },
+});
+
+
+
 exports.getAllComputers = async(req, res, next) => {
     try{
         // console.time("getAllComputers")
@@ -22,6 +40,7 @@ exports.getAllComputers = async(req, res, next) => {
             name: computer.name,
             imageUrl: computer.urls[Math.floor(Math.random() * computer.urls.length)].url
         }))
+        
         const advancedComputers = computers[1].map(computer => ({
             id: computer.id,
             name: computer.name,
@@ -33,11 +52,73 @@ exports.getAllComputers = async(req, res, next) => {
             imageUrl: computer.urls[Math.floor(Math.random() * computer.urls.length)].url
         }))
         // console.log(computers)
+
+
+
+        // console.time("getAllComputers")
+        const proPromises = proComputers.map(async (computer) => {
+            // The "await" inside the async function ensures we wait for the signed URL, but does NOT block the next iteration.
+            const signedUrl = await getSignedUrl(
+                S3,
+                new GetObjectCommand({
+                    Bucket: "sahntek",
+                    Key: `PC${computer.id}/${computer.imageUrl}`
+                }),
+                { expiresIn: 3600 }
+            );
+            return {
+                id: computer.id,
+                name: computer.name,
+                imageUrl: signedUrl
+            };
+        });
+
+        const advancedPromises = advancedComputers.map(async (computer) => {
+            // The "await" inside the async function ensures we wait for the signed URL, but does NOT block the next iteration.
+            const signedUrl = await getSignedUrl(
+                S3,
+                new GetObjectCommand({
+                    Bucket: "sahntek",
+                    Key: `PC${computer.id}/${computer.imageUrl}`
+                }),
+                { expiresIn: 3600 }
+            );
+            return {
+                id: computer.id,
+                name: computer.name,
+                imageUrl: signedUrl
+            };
+        });
+
+        const premiumPromises = premiumComputers.map(async (computer) => {
+            // The "await" inside the async function ensures we wait for the signed URL, but does NOT block the next iteration.
+            const signedUrl = await getSignedUrl(
+                S3,
+                new GetObjectCommand({
+                    Bucket: "sahntek",
+                    Key: `PC${computer.id}/${computer.imageUrl}`
+                }),
+                { expiresIn: 3600 }
+            );
+            return {
+                id: computer.id,
+                name: computer.name,
+                imageUrl: signedUrl
+            };
+        });
+
+        const signedPro = await Promise.all(proPromises)
+        const signedAdvanced = await Promise.all(advancedPromises)
+        const signedPremium = await Promise.all(premiumPromises)
+
+        // const test = await Promise.all([...proPromises, ...premiumPromises, ...advancedPromises])
+        // console.timeEnd("getAllComputers");
         res.json({
-            pro: proComputers,
-            advanced: advancedComputers,
-            premium: premiumComputers
+            pro: signedPro,
+            advanced: signedAdvanced,
+            premium: signedPremium
         })
+
     } catch(error){
         next(error)
     }

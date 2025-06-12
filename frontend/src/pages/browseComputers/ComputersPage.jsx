@@ -74,7 +74,7 @@ const ComputersPage = () => {
         fetchData()
         window.scrollTo({ top: 0 });
     }, [])
-
+    
     return(
         <>
             <Helmet>

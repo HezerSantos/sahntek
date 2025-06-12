@@ -4,7 +4,11 @@ const ComputerCard = ({id, name, url}) => {
     return (
         <>
             <div className="computer__card">
-                <img src={url} alt="" className='computer__image'/>
+                {/https?:\/\/[^\s/$.?#].[^\s]*/.test(url)? (
+                    <img src={url} alt="" className='computer__image'/>
+                ) : (
+                    <img className="featured-deal-skeleton__image" alt={name}/>
+                )}
                 <div>
                     <Link className='card__header' to={`/browse-computers/${id}`}>
                         {name}

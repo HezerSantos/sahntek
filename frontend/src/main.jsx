@@ -11,11 +11,13 @@ const router = createBrowserRouter(routes)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ErrorProvider>
       <CsrfProvider>
         <HelmetProvider>
           <RouterProvider router={router} />
         </HelmetProvider>
       </CsrfProvider>
+    </ErrorProvider>
   </StrictMode>
     // <CsrfProvider>
     //   <HelmetProvider>
