@@ -27,7 +27,8 @@ const fetchComputerById = async(
     setStorageOptions,
     setError,
     setErrorFlag,
-    csrfToken
+    csrfToken,
+    setTypeName
 ) => {
     try{
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`, {
@@ -45,7 +46,7 @@ const fetchComputerById = async(
         setMoboName(computer[0].motherboard.name)
         setCoolerName(computer[0].cooler.name)
         setImageUrls(computer[0].urls)
-
+        setTypeName(computer[0].performance)
         const price = Object.values(computer[0]).map(computer => {
             if (computer.price){
                 return computer.price
@@ -70,6 +71,8 @@ const ComputerPageById = () => {
     const [ coolerName, setCoolerName ] = useState("")
     const [ imageUrls, setImageUrls ] = useState("")
     const [ isLoading, setIsLoading ] = useState(true)
+
+    const [ typeName, setTypeName ] = useState("")
 
     const [ currentComputer, setCurrentComputer ] = useState("")
     const [ storageOptions, setStorageOptions ] = useState("")
@@ -101,7 +104,8 @@ const ComputerPageById = () => {
                 setStorageOptions,
                 setError,
                 setErrorFlag,
-                csrfToken
+                csrfToken,
+                setTypeName
             )
         }
 
@@ -122,6 +126,7 @@ const ComputerPageById = () => {
                 isLoading={isLoading} 
                 currentComputer={currentComputer}
                 setCurrentComputer={setCurrentComputer}
+                typeName={typeName}
             />
             <main className="background__primary">
 

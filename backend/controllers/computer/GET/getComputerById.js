@@ -29,6 +29,7 @@ exports.getComputerById = async(req, res, next) => {
             select: {
                 name: true,
                 casePrice: true,
+                performance: true,
                 cpu: {
                     select:{
                         name: true,

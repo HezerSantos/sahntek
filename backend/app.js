@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 require("dotenv").config();
 const app = express();
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 // Middleware Imports
 const corsMiddleware = require("./middleware/corsMiddleware");
 const helmetMiddleware = require("./middleware/helmetMiddleware");
@@ -11,22 +11,22 @@ const cookieParserMiddleware = require("./middleware/cookieParserMiddleware");
 const bodyParserMiddleware = require("./middleware/bodyParserMiddleware");
 const { errorMiddleware } = require("./middleware/errors/errorMiddleware");
 //security middleware lolers
-const {fingerprint} = require('./middleware/security/fingerPrintMiddleware')
+// const {fingerprint} = require('./middleware/security/fingerPrintMiddleware')
 const { csrf } = require('./middleware/security/csrfMiddleware')
 const { validateCsrf } = require('./middleware/security/validateCsrfMiddleware')
-const { validateRefreshCsrf } = require('./middleware/security/validateRefreshCsrf')
+// const { validateRefreshCsrf } = require('./middleware/security/validateRefreshCsrf')
 // Apply Middleware
 app.use(cookieParserMiddleware);
-app.use(fingerprint)
+// app.use(fingerprint)
 app.use(bodyParserMiddleware);
 app.use(corsMiddleware);
 app.use(helmetMiddleware);
 app.use(passport.initialize());
 
 // Routers
-const logoutRouter = require("./routes/auth/logoutRouter");
-const loginRouter = require("./routes/auth/loginRouter");
-const refreshRouter = require("./routes/auth/refreshRouter");
+// const logoutRouter = require("./routes/auth/logoutRouter");
+// const loginRouter = require("./routes/auth/loginRouter");
+// const refreshRouter = require("./routes/auth/refreshRouter");
 const computerRouter = require("./routes/computer/computerRouter");
 
 

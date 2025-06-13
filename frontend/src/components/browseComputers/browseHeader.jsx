@@ -4,6 +4,11 @@ import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 import computerImage1 from '../../assets/images/computerImage.PNG'
 import computerImage2 from '../../assets/images/computerImage2.PNG'
 import FeaturedDealSkeleton from "./FeaturedDealSkeleton";
+
+import { LuCircuitBoard, LuPower  } from "react-icons/lu";
+import { MdOutlineDiamond } from "react-icons/md";
+
+
 const scrollCard = (direction, container) => {
     
     const computerCard = container.current?.querySelector('.computer__card')
@@ -66,8 +71,25 @@ const BrowseHeader = ({featuredDeals, isLoading}) => {
                                 Featured PC Deals: Unbeatable <span>Performance</span>, Unbelievable <span>Prices</span>!
                             </h1>
                             <p>
-                                "Unlock incredible <span>performance</span> at a price that won’t break the bank! Our featured PC deals offer high-end builds starting at just $700, including a <span>Phanteks mid-tower case</span> with sleek ARGB lighting and top-tier components designed to elevate your gaming and productivity experience. Whether you're gaming, streaming, or tackling demanding tasks, this custom-built PC has everything you need to stay ahead. Don't miss out on these <span>limited-time offers</span> — upgrade your setup today and experience power and style, all within your budget!
+                                Unlock incredible <span>performance</span> at a price that won’t break the bank!
+                                <br />
+                                <br />
+                                 Whether you're gaming, streaming, or tackling demanding tasks, this custom-built PC has everything you need to stay ahead — upgrade your setup today and experience power and style, all within your budget!
                             </p>
+                            <div className="performance-type-container">
+                                <div>
+                                    <LuCircuitBoard/>
+                                    <p>Pro</p>
+                                </div>
+                                <div>
+                                    <LuPower/>
+                                    <p>Advanced</p>
+                                </div>
+                                <div>
+                                    <MdOutlineDiamond/>
+                                    <p>Premium</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
