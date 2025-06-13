@@ -10,7 +10,7 @@ import { ErrorProvider } from './context/ErrorContext/ErrorProvider.jsx'
 const router = createBrowserRouter(routes)
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <ErrorProvider>
       <CsrfProvider>
         <HelmetProvider>
@@ -18,10 +18,5 @@ createRoot(document.getElementById('root')).render(
         </HelmetProvider>
       </CsrfProvider>
     </ErrorProvider>
-  </StrictMode>
-    // <CsrfProvider>
-    //   <HelmetProvider>
-    //     <RouterProvider router={router} />
-    //   </HelmetProvider>
-    // </CsrfProvider>
+  /* </StrictMode> */
 )

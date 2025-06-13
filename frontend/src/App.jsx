@@ -13,7 +13,7 @@ function App() {
   const { setCsrfToken } = useContext(CsrfContext)
   const [ isLoading, setIsLoading ] = useState(true)
 
-  const { setErrorFlag, setError } = useContext(ErrorContext)
+  const { setErrorFlag, setError, errorFlag, error } = useContext(ErrorContext)
 
     if(import.meta.env.VITE_NODE_ENV === 'production'){
         useEffect(() => {
@@ -36,6 +36,7 @@ function App() {
           } catch (e) { 
             setError(e)
             setErrorFlag(true)
+            setIsLoading(false)
           }
         }
 
@@ -48,7 +49,14 @@ function App() {
         return () => clearInterval(interval)
       }, [])
 
-
+    useEffect(() => {
+      if(errorFlag){
+          throw error
+      }
+      
+      setErrorFlag(false)
+      
+    }, [errorFlag, error])
     return (
         <>
           {!isLoading && (     

@@ -25,7 +25,7 @@ exports.validateCsrf = (req, res, next) => {
         }
         
         const match = compare(csrfToken, headerToken)
-        console.log(match)
+        // console.log(match)
         if(!match){
             console.log("Rejected", req.method, req.originalUrl)
             throwError("CSRF token invalid or missing", 403, ['403 Forbidden'])

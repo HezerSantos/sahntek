@@ -5,16 +5,16 @@ export const ErrorProvider = ({children}) => {
     const [ error, setError ] = useState(null)
     const [ errorFlag, setErrorFlag ] = useState(false)
 
-    useEffect(() => {
-        if(errorFlag){
-            throw error
-        }
+    // useEffect(() => {
+    //     if(errorFlag){
+    //         throw error
+    //     }
         
-        setErrorFlag(false)
+    //     setErrorFlag(false)
         
-    }, [errorFlag])
+    // }, [errorFlag])
     return(
-        <ErrorContext.Provider value={{setErrorFlag, error, setError}}>
+        <ErrorContext.Provider value={{setErrorFlag, error, setError, errorFlag}}>
             {children}
         </ErrorContext.Provider>
     )

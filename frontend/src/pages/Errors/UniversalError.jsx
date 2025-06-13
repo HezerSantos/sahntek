@@ -19,7 +19,7 @@ const UniversalError = () => {
   return (
     <>
       <Helmet>
-        <title>{`${error.status} - ${errorMap.get(error.status)}`}</title>
+        <title>{`${error.status || 500} - ${errorMap.get(error.status || 500)}`}</title>
          <meta name="robots" content="noindex" />
          {error.staus === 404? (
           <meta name="description" content="This page does not exist. Return home to find what you're looking for." />
@@ -39,7 +39,7 @@ const UniversalError = () => {
         ) : (
           <>
             <MdOutlineErrorOutline />
-            <h1>{error.status} {errorMap.get(error.status)}</h1>
+            <h1>{error.status || 500} {errorMap.get(error.status)}</h1>
             <p>Opps! Something Went Wrong</p>
             <button onClick={() => navigate("/")}>Go Home</button>
           </>
