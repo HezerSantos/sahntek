@@ -20,11 +20,12 @@ const fetchAllComputers = async(
     setFeautredDeals, 
     csrfToken,
     setErrorFlag,
-    setError
+    setError,
+    checkCookie
 )=> {
     try{
         // console.time("fetch")
-        
+        checkCookie()
         const res = await axios.get(`${api.apiUrl}/api/computers`, {
             headers: {
                 csrftoken: csrfToken
@@ -68,10 +69,11 @@ const ComputersPage = () => {
                 setFeautredDeals, 
                 csrfToken, 
                 setErrorFlag,
-                setError
+                setError,
+                checkCookie
             )
         }
-        checkCookie()
+        
         fetchData()
         window.scrollTo({ top: 0 });
     }, [])

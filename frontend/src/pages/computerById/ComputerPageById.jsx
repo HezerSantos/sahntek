@@ -28,9 +28,12 @@ const fetchComputerById = async(
     setError,
     setErrorFlag,
     csrfToken,
-    setTypeName
+    setTypeName,
+    checkCookie
 ) => {
     try{
+        const test = checkCookie()
+        console.log(test)
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`, {
             headers: {
                 csrftoken: csrfToken
@@ -105,10 +108,11 @@ const ComputerPageById = () => {
                 setError,
                 setErrorFlag,
                 csrfToken,
-                setTypeName
+                setTypeName,
+                checkCookie
             )
         }
-        checkCookie()
+        
         fetchData()
     }, [])
     return(
