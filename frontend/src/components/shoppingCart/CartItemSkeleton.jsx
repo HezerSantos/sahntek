@@ -1,4 +1,3 @@
-import image from '../../assets/images/computerImage.PNG'
 const CartItemSkeleton = () => {
     return(
         <>

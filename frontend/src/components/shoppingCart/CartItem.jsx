@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import image from '../../assets/images/computerImage.PNG'
 import { FaPlus, FaMinus, FaTrash   } from "react-icons/fa6";
 
 const addItem = (setContent, itemKey, setShoppingCart) => {

@@ -1,8 +1,6 @@
 import { useEffect, useRef } from "react";
 import ComputerCard from "./ComputerCard"
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
-import computerImage1 from '../../assets/images/computerImage.PNG'
-import computerImage2 from '../../assets/images/computerImage2.PNG'
 import FeaturedDealSkeleton from "./FeaturedDealSkeleton";
 
 import { LuCircuitBoard, LuPower  } from "react-icons/lu";

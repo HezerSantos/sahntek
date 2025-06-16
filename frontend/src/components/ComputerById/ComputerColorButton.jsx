@@ -1,6 +1,3 @@
-import { useEffect } from 'react'
-import computerImage from '../../assets/images/computerImage.PNG'
-
 const handleComputerColorChange = (index, setCurrentComputer, urlList) => {
     setCurrentComputer(urlList[index])
 }

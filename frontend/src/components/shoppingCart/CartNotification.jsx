@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import testImage from '../../assets/images/computerImage.PNG'
 import { useEffect } from 'react'
 const CartNotification = ({imageUrl, setIsNotification}) => {
     const navigate = useNavigate()

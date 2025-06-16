@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-import computerTestImage from '../../assets/images/computerImage.PNG'
 import ComputerColorButton from './ComputerColorButton'
 import ComputerColorButtonSkeleton from './ComputerColorButtonSkeleton'
 
