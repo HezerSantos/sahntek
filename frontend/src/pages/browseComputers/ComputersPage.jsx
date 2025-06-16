@@ -59,7 +59,7 @@ const ComputersPage = () => {
     
     useEffect(() => {
         const fetchData = async() => {
-            await getCsrf()
+            // await getCsrf()
             await fetchAllComputers(
                 setProComputers, 
                 setAdvancedComputers, 

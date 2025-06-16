@@ -90,7 +90,7 @@ const ComputerPageById = () => {
     const { id } = useParams()
     useEffect(() => {
         const fetchData = async() => {
-            await getCsrf()
+            // await getCsrf()
             await fetchComputerById(
                 id, 
                 setCpuName, 
