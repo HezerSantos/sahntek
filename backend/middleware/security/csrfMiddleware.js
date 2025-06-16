@@ -26,7 +26,7 @@ const csrf = async(req, res, next) => {
         maxAge: 5 * 1000 * 60, 
         sameSite: "None",
         path: "/",
-        domain: "sahntek.hallowedvisions.com"
+        domain: ".hallowedvisions.com"
     })
 
     res.cookie("__Host.refresh-csrf-token", __HostRefreshCsrfToken, {
@@ -35,7 +35,7 @@ const csrf = async(req, res, next) => {
         maxAge: 5 * 1000 * 60, 
         sameSite: "None",
         path: "/",
-        domain: "sahntek.hallowedvisions.com"
+        domain: ".hallowedvisions.com"
     })
 
     res.status(200).send()
