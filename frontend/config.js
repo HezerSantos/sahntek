@@ -3,7 +3,7 @@ const config = {
       apiUrl: ""
     },
     development: {
-      apiUrl: "https://sahntek-api.hallowedvisions.com"
+      apiUrl: "http://localhost:8080"
     }
   };
 
