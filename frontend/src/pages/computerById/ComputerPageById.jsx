@@ -29,11 +29,8 @@ const fetchComputerById = async(
     setErrorFlag,
     csrfToken,
     setTypeName,
-    checkCookie
 ) => {
     try{
-        const test = checkCookie()
-        console.log(test)
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`, {
             headers: {
                 csrftoken: csrfToken
@@ -86,13 +83,14 @@ const ComputerPageById = () => {
     const [ isNotification, setIsNotification ] = useState(false)
 
     const { setError, setErrorFlag } = useContext(ErrorContext)
-    const { csrfToken, checkCookie } = useContext(CsrfContext)
+    const { csrfToken, getCsrf } = useContext(CsrfContext)
     useEffect(() => {
         setCurrentComputer(imageUrls[0])
     }, [imageUrls])
     const { id } = useParams()
     useEffect(() => {
         const fetchData = async() => {
+            await getCsrf()
             await fetchComputerById(
                 id, 
                 setCpuName, 
@@ -109,7 +107,6 @@ const ComputerPageById = () => {
                 setErrorFlag,
                 csrfToken,
                 setTypeName,
-                checkCookie
             )
         }
         

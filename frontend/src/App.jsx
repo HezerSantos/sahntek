@@ -10,7 +10,7 @@ import { ErrorProvider } from './context/ErrorContext/ErrorProvider'
 import { ErrorContext } from './context/ErrorContext/ErrorContext'
 
 function App() {
-  const { setCsrfToken } = useContext(CsrfContext)
+  const { setCsrfToken, csrfLoading, getCsrf } = useContext(CsrfContext)
   const [ isLoading, setIsLoading ] = useState(true)
 
   const { setErrorFlag, setError, errorFlag, error } = useContext(ErrorContext)
@@ -22,32 +22,16 @@ function App() {
     // }
     axios.defaults.withCredentials = true;
     useEffect(() => {
-        const getCsrf = async () => {
-          try {
-            const res = await axios.get(`${api.apiUrl}/api/auth/csrf`)
-            const cookieMap = new Map(document.cookie.split(';').map(cookie => {
-              return [cookie.split("=")[0].replace(/\s+/g, ''), cookie.split("=")[1]]
-            }))
-            
-            const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
 
-            setCsrfToken(token.csrf)
-            setIsLoading(false)
-          } catch (e) { 
-            setError(e)
-            setErrorFlag(true)
-            setIsLoading(false)
-          }
-        }
 
-        getCsrf()
+        // getCsrf()
         const interval = setInterval(() => {
           console.log('New Csrf')
           getCsrf()
         }, 150000)
     
         return () => clearInterval(interval)
-      }, [])
+    }, [])
 
     useEffect(() => {
       if(errorFlag){
@@ -59,7 +43,7 @@ function App() {
     }, [errorFlag, error])
     return (
         <>
-          {!isLoading && (     
+          {!csrfLoading && (     
               <CartProvider>
                 <Outlet />
               </CartProvider>

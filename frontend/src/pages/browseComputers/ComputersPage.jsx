@@ -20,12 +20,10 @@ const fetchAllComputers = async(
     setFeautredDeals, 
     csrfToken,
     setErrorFlag,
-    setError,
-    checkCookie
+    setError
 )=> {
     try{
         // console.time("fetch")
-        checkCookie()
         const res = await axios.get(`${api.apiUrl}/api/computers`, {
             headers: {
                 csrftoken: csrfToken
@@ -55,12 +53,13 @@ const ComputersPage = () => {
     const [ featuredDeals, setFeautredDeals ] = useState([])
     const [ isLoading, setIsLoading ] = useState(true)
 
-    const { csrfToken, checkCookie } = useContext(CsrfContext)
+    const { csrfToken, getCsrf } = useContext(CsrfContext)
 
     const  { setError, setErrorFlag } = useContext(ErrorContext)
     
     useEffect(() => {
         const fetchData = async() => {
+            await getCsrf()
             await fetchAllComputers(
                 setProComputers, 
                 setAdvancedComputers, 
@@ -70,7 +69,6 @@ const ComputersPage = () => {
                 csrfToken, 
                 setErrorFlag,
                 setError,
-                checkCookie
             )
         }
         
