@@ -6,7 +6,6 @@ import routes from './routes.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { CsrfProvider } from './context/CsrfContext/CsrfProvider.jsx'
 import { ErrorProvider } from './context/ErrorContext/ErrorProvider.jsx'
-
 const router = createBrowserRouter(routes)
 
 createRoot(document.getElementById('root')).render(

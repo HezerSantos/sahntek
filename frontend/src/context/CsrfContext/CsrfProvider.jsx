@@ -5,7 +5,6 @@ import { ErrorContext } from "../ErrorContext/ErrorContext";
 import axios from "axios";
 export const CsrfProvider = ({children}) => {
     const  [ csrfToken, setCsrfToken ] = useState(null)
-    const  [ csrfLoading, setCsrfLoading ] = useState(true)
     const { setError, setErrorFlag } = useContext(ErrorContext)
 
     const getCsrf = async () => {
@@ -14,15 +13,13 @@ export const CsrfProvider = ({children}) => {
             const cookieMap = new Map(document.cookie.split(';').map(cookie => {
                 return [cookie.split("=")[0].replace(/\s+/g, ''), cookie.split("=")[1]]
             }))
-            
+            console.log(res)
             const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
 
             setCsrfToken(token.csrf)
-            setCsrfLoading(false)
         } catch (e) { 
             setError(e)
             setErrorFlag(true)
-            setCsrfLoading(false)
         }
     }
 
@@ -36,7 +33,7 @@ export const CsrfProvider = ({children}) => {
     }, [])
     
     return(
-        <CsrfContext.Provider value={{csrfToken, setCsrfToken, getCsrf, csrfLoading}}>
+        <CsrfContext.Provider value={{csrfToken, setCsrfToken, getCsrf, setError}}>
             {children}
         </CsrfContext.Provider>
     )
