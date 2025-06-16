@@ -15,11 +15,11 @@ function App() {
 
   const { setErrorFlag, setError, errorFlag, error } = useContext(ErrorContext)
 
-    if(import.meta.env.VITE_NODE_ENV === 'production'){
-        useEffect(() => {
-            console.error = () => {};
-        }, [])
-    }
+    // if(import.meta.env.VITE_NODE_ENV === 'production'){
+    //     useEffect(() => {
+    //         console.error = () => {};
+    //     }, [])
+    // }
     axios.defaults.withCredentials = true;
     useEffect(() => {
         const getCsrf = async () => {
