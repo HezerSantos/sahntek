@@ -43,7 +43,7 @@ export const CsrfProvider = ({children}) => {
     }
     
     return(
-        <CsrfContext.Provider value={{csrfToken, setCsrfToken, checkCookie, getCsrf}}>
+        <CsrfContext.Provider value={{csrfToken, setCsrfToken, checkCookie}}>
             {children}
         </CsrfContext.Provider>
     )
