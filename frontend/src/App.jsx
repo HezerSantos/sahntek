@@ -21,17 +21,7 @@ function App() {
     //     }, [])
     // }
     axios.defaults.withCredentials = true;
-    useEffect(() => {
 
-
-        // getCsrf()
-        const interval = setInterval(() => {
-          console.log('New Csrf')
-          getCsrf()
-        }, 150000)
-    
-        return () => clearInterval(interval)
-    }, [])
 
     useEffect(() => {
       if(errorFlag){

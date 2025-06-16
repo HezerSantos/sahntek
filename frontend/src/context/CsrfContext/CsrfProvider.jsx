@@ -1,28 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CsrfContext } from "./CsrfContext";
 import { jwtDecode } from 'jwt-decode'
+import { ErrorContext } from "../ErrorContext/ErrorContext";
 export const CsrfProvider = ({children}) => {
     const  [ csrfToken, setCsrfToken ] = useState(null)
     const  [ csrfLoading, setCsrfLoading ] = useState(true)
-    const checkCookie = () => {
-        if(document.cookie){
-            const cookieMap = new Map(document.cookie.split(';').map(cookie => {
-              return [cookie.split("=")[0].replace(/\s+/g, ''), cookie.split("=")[1]]
-            }))
-            if(cookieMap.size === 0){
-                return
-            }
-            // console.log(cookieMap)
-
-            // console.log()
-
-            // console.log(cookieMap.get('__Host.csrf-token'))
-            const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
-            
-            setCsrfToken(token.csrf)
-            return token
-        }
-    }
+    const { setError, setErrorFlag } = useContext(ErrorContext)
 
     const getCsrf = async () => {
         try {
@@ -41,9 +24,18 @@ export const CsrfProvider = ({children}) => {
             setCsrfLoading(false)
         }
     }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+          console.log('New Csrf')
+          getCsrf()
+        }, 150000)
+    
+        return () => clearInterval(interval)
+    }, [])
     
     return(
-        <CsrfContext.Provider value={{csrfToken, setCsrfToken, checkCookie, getCsrf, csrfLoading}}>
+        <CsrfContext.Provider value={{csrfToken, setCsrfToken, getCsrf, csrfLoading}}>
             {children}
         </CsrfContext.Provider>
     )
