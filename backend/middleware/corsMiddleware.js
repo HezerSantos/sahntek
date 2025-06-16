@@ -25,7 +25,7 @@ const allowedOrigins = [
 // };
 
 const corsOptions = {
-  origin: '*', // This allows all origins
+  origin: 'https://sahntek.hallowedvisions.com', // This allows all origins
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization", "Cookie", "Set-Cookie", "csrfToken"],
   credentials: true, // Allow cookies to be sent
