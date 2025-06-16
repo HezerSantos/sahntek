@@ -42,9 +42,6 @@ export const CsrfProvider = ({children}) => {
         }
     }
     
-    // useEffect(() => {
-    //     console.log(csrfToken)
-    // }, [csrfToken])
     return(
         <CsrfContext.Provider value={{csrfToken, setCsrfToken, checkCookie, getCsrf}}>
             {children}
