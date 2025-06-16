@@ -1,6 +1,6 @@
 const config = {
     production: {
-      apiUrl: ""
+      apiUrl: import.meta.env.API_URL
     },
     development: {
       apiUrl: "http://localhost:8080"
