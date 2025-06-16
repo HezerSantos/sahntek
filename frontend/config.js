@@ -3,7 +3,7 @@ const config = {
       apiUrl: import.meta.env.VITE_API_URL
     },
     development: {
-      apiUrl: "http://localhost:8080"
+      apiUrl: "http://localhost:808"
     }
   };
 
