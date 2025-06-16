@@ -3,7 +3,7 @@ const config = {
       apiUrl: ""
     },
     development: {
-      apiUrl: "https://sahntek-backend-production.up.railway.app"
+      apiUrl: "sahntek-api.hallowedvisions.com"
     }
   };
 
