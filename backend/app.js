@@ -22,7 +22,7 @@ app.use(cookieParserMiddleware);
 app.use(bodyParserMiddleware);
 
 app.use(helmetMiddleware);
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 // Routers
 // const logoutRouter = require("./routes/auth/logoutRouter");
