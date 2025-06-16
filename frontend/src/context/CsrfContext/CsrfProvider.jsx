@@ -9,7 +9,9 @@ export const CsrfProvider = ({children}) => {
             const cookieMap = new Map(document.cookie.split(';').map(cookie => {
               return [cookie.split("=")[0], cookie.split("=")[1]]
             }))
-            
+            if(cookieMap.size === 0){
+                return
+            }
             const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
 
             setCsrfToken(token.csrf)
