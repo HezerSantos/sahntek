@@ -8,7 +8,7 @@
     "commit": "sh -c 'git add -A && git commit -m \"$0\" && git push'",
     "start": "npx serve -s ./dist",
     "dev": "vite",
-    "build": "vite build --mode production && npm run obfuscate",
+    "build": "vite build --mode production",
     "obfuscate": "javascript-obfuscator dist --output dist --compact true --self-defending true --control-flow-flattening true --rename-globals true",
     "lint": "eslint .",
     "preview": "vite preview",
