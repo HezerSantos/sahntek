@@ -15,7 +15,7 @@ function App() {
 
   const { setErrorFlag, setError, errorFlag, error } = useContext(ErrorContext)
 
-    if(import.meta.env.VITE_NODE_ENV === 'production'){
+    if(import.meta.env.MODE === 'production'){
         useEffect(() => {
             console.error = () => {};
         }, [])

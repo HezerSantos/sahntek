@@ -7,7 +7,7 @@ const config = {
     }
   };
 
-const currentConfig = import.meta.env.VITE_NODE_ENV === 'production'
+const currentConfig = import.meta.env.MODE === 'production'
 ? config.production
 : config.development;
 
