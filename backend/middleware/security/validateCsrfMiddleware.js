@@ -6,7 +6,8 @@ const XFRS_SECRET = process.env.XFRS_SECRET
 
   const compare  = (token, header) => {
     const { csrf } = jwt.verify(token, XFRS_SECRET)
-    // console.log("cookie", csrf)
+    console.log("cookie", csrf)
+    console.log("header", header)
     return csrf === header
   }
 
