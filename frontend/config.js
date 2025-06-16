@@ -3,7 +3,7 @@ const config = {
       apiUrl: ""
     },
     development: {
-      apiUrl: "http://localhost:8080"
+      apiUrl: "https://sahntek-backend-production.up.railway.app"
     }
   };
 
