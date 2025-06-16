@@ -2,7 +2,8 @@ const cors = require("cors");
 require('dotenv').config()
 const allowedOrigins = [
   "http://localhost:5173", 
-  "https://sahntek.hallowedvisions.com"
+  "https://sahntek.hallowedvisions.com",
+  "https://sahntek-frontend-production.up.railway.app"
 ];
 
 const corsOptions = {
