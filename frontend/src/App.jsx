@@ -26,7 +26,7 @@ function App() {
           try {
             const res = await axios.get(`${api.apiUrl}/api/auth/csrf`)
             const cookieMap = new Map(document.cookie.split(';').map(cookie => {
-              return [cookie.split("=")[0], cookie.split("=")[1]]
+              return [cookie.split("=")[0].replace(/\s+/g, ''), cookie.split("=")[1]]
             }))
             
             const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
