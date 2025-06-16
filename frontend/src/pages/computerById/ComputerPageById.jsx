@@ -83,7 +83,7 @@ const ComputerPageById = () => {
     const [ isNotification, setIsNotification ] = useState(false)
 
     const { setError, setErrorFlag } = useContext(ErrorContext)
-    const { csrfToken } = useContext(CsrfContext)
+    const { csrfToken, checkCookie } = useContext(CsrfContext)
     useEffect(() => {
         setCurrentComputer(imageUrls[0])
     }, [imageUrls])
@@ -108,7 +108,7 @@ const ComputerPageById = () => {
                 setTypeName
             )
         }
-
+        checkCookie()
         fetchData()
     }, [])
     return(

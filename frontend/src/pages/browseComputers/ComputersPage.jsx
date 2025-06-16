@@ -54,7 +54,7 @@ const ComputersPage = () => {
     const [ featuredDeals, setFeautredDeals ] = useState([])
     const [ isLoading, setIsLoading ] = useState(true)
 
-    const { csrfToken } = useContext(CsrfContext)
+    const { csrfToken, checkCookie } = useContext(CsrfContext)
 
     const  { setError, setErrorFlag } = useContext(ErrorContext)
     
@@ -71,6 +71,7 @@ const ComputersPage = () => {
                 setError
             )
         }
+        checkCookie()
         fetchData()
         window.scrollTo({ top: 0 });
     }, [])
