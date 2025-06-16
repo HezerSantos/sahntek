@@ -25,13 +25,4 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-module.exports = (req, res, next) => {
-  if (req.method === "OPTIONS") {
-    res.setHeader("Access-Control-Allow-Origin", 'https://sahntek.hallowedvisions.com');
-    res.setHeader("Access-Control-Allow-Credentials", "true");
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Cookie, Set-Cookie, csrfToken");
-    return res.status(200).end();
-  }
-  cors(corsOptions)(req, res, next);
-};
+module.exports = cors(corsOptions);

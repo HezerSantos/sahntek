@@ -16,10 +16,11 @@ const { csrf } = require('./middleware/security/csrfMiddleware')
 const { validateCsrf } = require('./middleware/security/validateCsrfMiddleware')
 // const { validateRefreshCsrf } = require('./middleware/security/validateRefreshCsrf')
 // Apply Middleware
+app.use(corsMiddleware);
 app.use(cookieParserMiddleware);
 // app.use(fingerprint)
 app.use(bodyParserMiddleware);
-app.use(corsMiddleware);
+
 app.use(helmetMiddleware);
 app.use(passport.initialize());
 
