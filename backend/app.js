@@ -41,6 +41,8 @@ app.use("/api/auth/csrf", csrf)
 app.use("/api/computers", validateCsrf, computerRouter)
 app.use(errorMiddleware)
 // Server
-app.listen(8080, () => {
-  console.log("App running on port 8080");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`App running on port ${PORT}`);
 });
