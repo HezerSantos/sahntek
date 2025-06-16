@@ -17,7 +17,7 @@ function App() {
 
     if(import.meta.env.MODE === 'production'){
         useEffect(() => {
-            console.error = () => {};
+            // console.error = () => {};
         }, [])
     }
     axios.defaults.withCredentials = true;
