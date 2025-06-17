@@ -20,25 +20,7 @@ const csrf = async(req, res, next) => {
     const __SecureRefreshCsrfToken = jwt.sign(rpayload, RFRS_SECRET, { expiresIn: '5m'})
 
     
-    res.cookie("__SecureCsrf-token", __SecureCsrfToken, {
-        httpOnly: false, 
-        secure: true, 
-        maxAge: 5 * 1000 * 60, 
-        sameSite: "None",
-        path: "/",
-        domain: "sahntek.hallowedvisions.com"
-    })
-
-    res.cookie("Csrf-token", __SecureCsrfToken, {
-        httpOnly: false, 
-        secure: true, 
-        maxAge: 5 * 1000 * 60, 
-        sameSite: "None",
-        path: "/",
-        domain: "sahntek.hallowedvisions.com"
-    })
-
-    res.cookie("Csrf-tokenD", __SecureCsrfToken, {
+    res.cookie("__Secure.csrf-token", __SecureCsrfToken, {
         httpOnly: false, 
         secure: true, 
         maxAge: 5 * 1000 * 60, 
@@ -53,7 +35,7 @@ const csrf = async(req, res, next) => {
         maxAge: 5 * 1000 * 60, 
         sameSite: "None",
         path: "/",
-        domain: "sahntek.hallowedvisions.com"
+        domain: ".hallowedvisions.com"
     })
 
     res.status(200).send()
