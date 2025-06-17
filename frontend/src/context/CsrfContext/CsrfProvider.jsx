@@ -16,7 +16,7 @@ export const CsrfProvider = ({children}) => {
             }))
             console.log(res)
             const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
-
+            console.log("Function", token)
             setCsrfToken(token.csrf)
         } catch (e) { 
             setError(e)
@@ -32,6 +32,10 @@ export const CsrfProvider = ({children}) => {
     
         return () => clearInterval(interval)
     }, [])
+
+    useEffect(() => { //HERE
+        console.log("Useeffect:", csrfToken)
+    }, [csrfToken])
     
     return(
         <CsrfContext.Provider value={{csrfToken, setCsrfToken, getCsrf, setError}}>
