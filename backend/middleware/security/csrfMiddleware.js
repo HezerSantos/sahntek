@@ -16,11 +16,11 @@ const csrf = async(req, res, next) => {
         csrf: refreshSurf
     }
 
-    const __HostCsrfToken = jwt.sign(spayload, XFRS_SECRET, { expiresIn: '5m'})
-    const __HostRefreshCsrfToken = jwt.sign(rpayload, RFRS_SECRET, { expiresIn: '5m'})
+    const __SecureCsrfToken = jwt.sign(spayload, XFRS_SECRET, { expiresIn: '5m'})
+    const __SecureRefreshCsrfToken = jwt.sign(rpayload, RFRS_SECRET, { expiresIn: '5m'})
 
     
-    res.cookie("__Host.csrf-token", __HostCsrfToken, {
+    res.cookie("__Secure.csrf-token", __SecureCsrfToken, {
         httpOnly: false, 
         secure: true, 
         maxAge: 5 * 1000 * 60, 
@@ -29,7 +29,7 @@ const csrf = async(req, res, next) => {
         domain: "sahntek.hallowedvisions.com"
     })
 
-    res.cookie("__Host.refresh-csrf-token", __HostRefreshCsrfToken, {
+    res.cookie("__Secure.refresh-csrf-token", __SecureRefreshCsrfToken, {
         httpOnly: false, 
         secure: true, 
         maxAge: 5 * 1000 * 60, 

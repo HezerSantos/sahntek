@@ -14,7 +14,7 @@ export const CsrfProvider = ({children}) => {
             const cookieMap = new Map(document.cookie.split(';').map(cookie => {
                 return [cookie.split("=")[0].replace(/\s+/g, ''), cookie.split("=")[1]]
             }))
-            const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
+            const token = jwtDecode(cookieMap.get('__Secure.csrf-token'))
             setCsrfToken(token.csrf)
             setCsrfLoading(false)
         } catch (e) { 
@@ -28,7 +28,7 @@ export const CsrfProvider = ({children}) => {
         const cookieMap = new Map(document.cookie.split(';').map(cookie => {
             return [cookie.split("=")[0].replace(/\s+/g, ''), cookie.split("=")[1]]
         }))
-        const token = jwtDecode(cookieMap.get('__Host.csrf-token'))
+        const token = jwtDecode(cookieMap.get('__Secure.csrf-token'))
         setCsrfToken(token.csrf)
     }
 
