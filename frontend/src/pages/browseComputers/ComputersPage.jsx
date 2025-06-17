@@ -24,6 +24,7 @@ const fetchAllComputers = async(
 )=> {
     try{
         // console.time("fetch")
+        console.log(csrfToken) //HERE
         const res = await axios.get(`${api.apiUrl}/api/computers`, {
             headers: {
                 csrftoken: csrfToken

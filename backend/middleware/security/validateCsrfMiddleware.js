@@ -18,7 +18,7 @@ exports.validateCsrf = (req, res, next) => {
         const csrfToken = req.cookies[`__Host.csrf-token`]
         // console.log("header", req.headers.csrftoken)
         const headerToken = req.headers.csrftoken
-        
+        console.log(headerToken)
         
         if(!headerToken){
             console.log("Rejected", req.method, req.originalUrl)
