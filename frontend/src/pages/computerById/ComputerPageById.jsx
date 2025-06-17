@@ -29,6 +29,7 @@ const fetchComputerById = async(
     setErrorFlag,
     csrfToken,
     setTypeName,
+    restoreCsrf
 ) => {
     try{
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`, {
@@ -60,6 +61,8 @@ const fetchComputerById = async(
     } catch(e){
         setError(e)
         setErrorFlag(true)
+    } finally {
+        restoreCsrf()
     }
 }
 const ComputerPageById = () => {
@@ -83,14 +86,13 @@ const ComputerPageById = () => {
     const [ isNotification, setIsNotification ] = useState(false)
 
     const { setError, setErrorFlag } = useContext(ErrorContext)
-    const { csrfToken, getCsrf } = useContext(CsrfContext)
+    const { csrfToken, restoreCsrf } = useContext(CsrfContext)
     useEffect(() => {
         setCurrentComputer(imageUrls[0])
     }, [imageUrls])
     const { id } = useParams()
     useEffect(() => {
         const fetchData = async() => {
-            // await getCsrf()
             await fetchComputerById(
                 id, 
                 setCpuName, 
@@ -107,6 +109,7 @@ const ComputerPageById = () => {
                 setErrorFlag,
                 csrfToken,
                 setTypeName,
+                restoreCsrf
             )
         }
         
