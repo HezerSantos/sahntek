@@ -24,10 +24,11 @@ const fetchAllComputers = async(
 )=> {
     try{
         // console.time("fetch")
-        console.log(csrfToken) //HERE
+        console.log('here', csrfToken) //HERE
         const res = await axios.get(`${api.apiUrl}/api/computers`, {
             headers: {
-                csrftoken: csrfToken
+                csrftoken: csrfToken,
+                test: "test"
             } 
         })
         // console.log(res)
@@ -59,8 +60,12 @@ const ComputersPage = () => {
     const  { setError, setErrorFlag } = useContext(ErrorContext)
     
     useEffect(() => {
-        const fetchData = async() => {
-            await getCsrf()
+        getCsrf()
+    }, [])
+
+    useEffect(() => {
+        if(csrfToken){
+            const fetchData = async() => {
             await fetchAllComputers(
                 setProComputers, 
                 setAdvancedComputers, 
@@ -75,7 +80,8 @@ const ComputersPage = () => {
         
         fetchData()
         window.scrollTo({ top: 0 });
-    }, [])
+        }
+    }, [csrfToken])
     
     return(
         <>
