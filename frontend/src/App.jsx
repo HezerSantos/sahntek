@@ -21,6 +21,7 @@ function App() {
     //     }, [])
     // }
     axios.defaults.withCredentials = true;
+    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = null
     useEffect(() => {
         getCsrf()
       }, [])
