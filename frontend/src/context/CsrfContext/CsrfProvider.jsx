@@ -3,6 +3,7 @@ import { CsrfContext } from "./CsrfContext";
 import { jwtDecode } from 'jwt-decode'
 import { ErrorContext } from "../ErrorContext/ErrorContext";
 import axios from "axios";
+import api from '../../../config'
 export const CsrfProvider = ({children}) => {
     const  [ csrfToken, setCsrfToken ] = useState(null)
     const { setError, setErrorFlag } = useContext(ErrorContext)
