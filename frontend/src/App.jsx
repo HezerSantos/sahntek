@@ -11,13 +11,13 @@ import { ErrorContext } from './context/ErrorContext/ErrorContext'
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 function App() {
-  disableReactDevTools()
   const { setCsrfToken, csrfLoading, getCsrf } = useContext(CsrfContext)
   const [ isLoading, setIsLoading ] = useState(true)
 
   const { setErrorFlag, setError, errorFlag, error } = useContext(ErrorContext)
 
     if(import.meta.env.MODE === 'production'){
+        disableReactDevTools()
         useEffect(() => {
             console.error = () => {};
         }, [])

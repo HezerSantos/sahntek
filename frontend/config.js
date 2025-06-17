@@ -1,6 +1,6 @@
 const config = {
     production: {
-      apiUrl: "https://sahntek-api.hallowedvisions.com"
+      apiUrl: import.meta.env.VITE_API_URL
     },
     development: {
       apiUrl: "http://localhost:8080"
