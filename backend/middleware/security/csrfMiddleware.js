@@ -29,6 +29,24 @@ const csrf = async(req, res, next) => {
         domain: "sahntek.hallowedvisions.com"
     })
 
+    res.cookie("Csrf-token", __SecureCsrfToken, {
+        httpOnly: false, 
+        secure: true, 
+        maxAge: 5 * 1000 * 60, 
+        sameSite: "None",
+        path: "/",
+        domain: "sahntek.hallowedvisions.com"
+    })
+
+    res.cookie("Csrf-tokenD", __SecureCsrfToken, {
+        httpOnly: false, 
+        secure: true, 
+        maxAge: 5 * 1000 * 60, 
+        sameSite: "None",
+        path: "/",
+        domain: ".hallowedvisions.com"
+    })
+
     res.cookie("__Secure.refresh-csrf-token", __SecureRefreshCsrfToken, {
         httpOnly: false, 
         secure: true, 
