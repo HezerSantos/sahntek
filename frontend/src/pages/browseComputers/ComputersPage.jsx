@@ -20,15 +20,14 @@ const fetchAllComputers = async(
     setFeautredDeals, 
     csrfToken,
     setErrorFlag,
-    setError
+    setError,
+    restoreCsrf
 )=> {
     try{
         // console.time("fetch")
-        console.log('here', csrfToken) //HERE
         const res = await axios.get(`${api.apiUrl}/api/computers`, {
             headers: {
-                csrftoken: csrfToken,
-                test: "test"
+                csrftoken: csrfToken
             } 
         })
         // console.log(res)
@@ -44,6 +43,8 @@ const fetchAllComputers = async(
     }catch(e){
         setError(e)
         setErrorFlag(true)
+    } finally {
+        restoreCsrf()
     }
 }
 
@@ -55,17 +56,12 @@ const ComputersPage = () => {
     const [ featuredDeals, setFeautredDeals ] = useState([])
     const [ isLoading, setIsLoading ] = useState(true)
 
-    const { csrfToken, getCsrf } = useContext(CsrfContext)
+    const { csrfToken, restoreCsrf } = useContext(CsrfContext)
 
     const  { setError, setErrorFlag } = useContext(ErrorContext)
     
     useEffect(() => {
-        getCsrf()
-    }, [])
-
-    useEffect(() => {
-        if(csrfToken){
-            const fetchData = async() => {
+        const fetchData = async() => {
             await fetchAllComputers(
                 setProComputers, 
                 setAdvancedComputers, 
@@ -75,13 +71,13 @@ const ComputersPage = () => {
                 csrfToken, 
                 setErrorFlag,
                 setError,
+                restoreCsrf
             )
         }
         
         fetchData()
         window.scrollTo({ top: 0 });
-        }
-    }, [csrfToken])
+    }, [])
     
     return(
         <>

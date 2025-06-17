@@ -18,19 +18,19 @@ exports.validateCsrf = (req, res, next) => {
         const csrfToken = req.cookies[`__Host.csrf-token`]
         // console.log("header", req.headers.csrftoken)
         const headerToken = req.headers.csrftoken
-        console.log("Here", headerToken)
-        console.log("Here", req.headers)
+        // console.log("Here", headerToken)
+        // console.log("Here", req.headers)
         
         if(!headerToken){
             console.log("Rejected", req.method, req.originalUrl)
-            throwError("CSRF missing", 403, ['403 Forbidden'])
+            throwError("CSRF missing", 403, ['403 Forbidden Header'])
         }
         
         const match = compare(csrfToken, headerToken)
         // console.log(match)
         if(!match){
             console.log("Rejected", req.method, req.originalUrl)
-            throwError("CSRF token invalid or missing", 403, ['403 Forbidden'])
+            throwError("CSRF token invalid or missing", 403, ['403 Forbidden Match'])
         }
     
         const crossSurf = crypto.randomBytes(32).toString('hex');
