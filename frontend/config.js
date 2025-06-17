@@ -1,14 +1,13 @@
 const config = {
     production: {
-      apiUrl: ""
+      apiUrl: "https://sahntek-api.hallowedvisions.com"
     },
     development: {
-      apiUrl: "https://sahntek-api.hallowedvisions.com"
+      apiUrl: "http://localhost:8080"
     }
   };
 
-// const currentConfig = import.meta.env.NODE_ENV === 'production'
-// ? config.production
-// : config.development;
-const currentConfig = config.development
+const currentConfig = import.meta.env.MODE === 'production'
+? config.production
+: config.development;
 export default currentConfig;
