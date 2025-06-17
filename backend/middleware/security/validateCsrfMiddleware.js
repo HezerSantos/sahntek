@@ -15,7 +15,7 @@ const XFRS_SECRET = process.env.XFRS_SECRET
 exports.validateCsrf = (req, res, next) => {
     try{
         // console.log(req.cookies)
-        const csrfToken = req.cookies[`__Host.csrf-token`]
+        const csrfToken = req.cookies[`__Secure.csrf-token`]
         // console.log("header", req.headers.csrftoken)
         const headerToken = req.headers.csrftoken
         // console.log("Here", headerToken)
@@ -40,7 +40,7 @@ exports.validateCsrf = (req, res, next) => {
     
     
         
-        res.cookie(`__SecureCsrf-token`, __SecureCsrfToken, {
+        res.cookie(`__Secure.csrf-token`, __SecureCsrfToken, {
             httpOnly: false, 
             secure: true, 
             maxAge: 60 * 1000 * 5, 
