@@ -20,7 +20,7 @@ const csrf = async(req, res, next) => {
     const __SecureRefreshCsrfToken = jwt.sign(rpayload, RFRS_SECRET, { expiresIn: '5m'})
 
     
-    res.cookie("__Secure.csrf-token", __SecureCsrfToken, {
+    res.cookie("__SecureCsrf-token", __SecureCsrfToken, {
         httpOnly: false, 
         secure: true, 
         maxAge: 5 * 1000 * 60, 

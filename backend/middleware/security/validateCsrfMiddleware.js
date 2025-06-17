@@ -40,7 +40,7 @@ exports.validateCsrf = (req, res, next) => {
     
     
         
-        res.cookie(`__Secure.csrf-token`, __SecureCsrfToken, {
+        res.cookie(`__SecureCsrf-token`, __SecureCsrfToken, {
             httpOnly: false, 
             secure: true, 
             maxAge: 60 * 1000 * 5, 
