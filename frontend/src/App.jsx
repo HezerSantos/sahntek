@@ -8,8 +8,10 @@ import { jwtDecode } from 'jwt-decode'
 import { CsrfContext } from './context/CsrfContext/CsrfContext'
 import { ErrorProvider } from './context/ErrorContext/ErrorProvider'
 import { ErrorContext } from './context/ErrorContext/ErrorContext'
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 function App() {
+  disableReactDevTools()
   const { setCsrfToken, csrfLoading, getCsrf } = useContext(CsrfContext)
   const [ isLoading, setIsLoading ] = useState(true)
 
@@ -21,7 +23,6 @@ function App() {
     //     }, [])
     // }
     axios.defaults.withCredentials = true;
-    window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = null
     useEffect(() => {
         getCsrf()
       }, [])
