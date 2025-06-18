@@ -85,7 +85,8 @@ exports.postStripeCheckout = async(req, res, next) => {
         //         // }
         // })
         const session = await stripe.checkout.sessions.create({
-            success_url: "http://localhost:5173?session_id={CHECKOUT_SESSION_ID}",
+            success_url: "http://localhost:5173/stripe/checkout/success/?session_id={CHECKOUT_SESSION_ID}",
+            cancel_url: "http://localhost:5173/stripe/checkout/cancel/?session_id={CHECKOUT_SESSION_ID}",
             line_items: finalizedCart.map((item) => {
                 return {
                     price_data: {

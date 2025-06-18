@@ -152,6 +152,10 @@
         font-family: var(--secondary__font);
     }
     & > button{
+        display: flex;
+        align-items: center;
+        min-width: 10rem;
+        max-height: 2rem;
         padding: .5rem 1rem .5rem 1rem;
         background-color: var(--primary__color);
         font-family: var(--secondary__font);

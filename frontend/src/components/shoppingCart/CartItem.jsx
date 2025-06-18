@@ -37,7 +37,7 @@ const removeItem = (setIsItem, itemKey, setShoppingCart) => {
     setShoppingCart(cart)
 }
 
-const CartItem = ({itemKey, contentO, setShoppingCart}) => {
+const CartItem = ({itemKey, contentO, setShoppingCart, isDisabled}) => {
     const [ content, setContent ] = useState(contentO)
     const [ isItem, setIsItem ] = useState(true)
     
@@ -53,17 +53,17 @@ const CartItem = ({itemKey, contentO, setShoppingCart}) => {
                             <p>Color: <strong>{content.color}</strong></p>
                             <div className='cart-item-quantity'>
                                 {content.quantity > 1? (
-                                    <button onClick={() => subtractItem(setContent, itemKey, setShoppingCart)}><FaMinus /></button>
+                                    <button disabled={isDisabled} onClick={() => subtractItem(setContent, itemKey, setShoppingCart)}><FaMinus /></button>
                                 ): (
-                                    <button onClick={() => removeItem(setIsItem, itemKey, setShoppingCart)}><FaTrash /></button>
+                                    <button disabled={isDisabled} onClick={() => removeItem(setIsItem, itemKey, setShoppingCart)}><FaTrash /></button>
                                 )}
                                 <input type="text" value={content.quantity} readOnly/>
-                                <button onClick={() => addItem(setContent, itemKey, setShoppingCart)}><FaPlus /></button>
+                                <button disabled={isDisabled} onClick={() => addItem(setContent, itemKey, setShoppingCart)}><FaPlus /></button>
                             </div>
                             <p>${content.price * content.quantity}</p>
                         </div>
                         <div className='cart-item__button-container'>
-                            <button onClick={() => removeItem(setIsItem, itemKey, setShoppingCart)}>
+                            <button disabled={isDisabled} onClick={() => removeItem(setIsItem, itemKey, setShoppingCart)}>
                                 Remove
                             </button>
                         </div>

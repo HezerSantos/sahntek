@@ -4,9 +4,13 @@ import CartItemSkeleton from "./CartItemSkeleton"
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios'
 import api from '../../../config'
-
-const handleCheckout = async() => {
+import { useContext } from "react"
+import { CsrfContext } from "../../context/CsrfContext/CsrfContext"
+import { AiOutlineLoading } from "react-icons/ai";
+import { ErrorContext } from "../../context/ErrorContext/ErrorContext"
+const handleCheckout = async(csrfToken, restoreCsrf, setIsDisabled, setError, setErrorFlag) => {
     try{
+        setIsDisabled(true)
         const shoppingCart = new Map(JSON.parse(localStorage.getItem('cart')))   
         const res = await axios.post(`${api.apiUrl}/api/stripe/checkout/sessions`, {
             shoppingCart: [...shoppingCart.entries()].map(([key, value]) => {
@@ -15,10 +19,17 @@ const handleCheckout = async() => {
                     items: value
                 }
             })
+        }, {
+            headers: {
+                csrftoken: csrfToken
+            }
         })
         window.location = res.data.url
     } catch(e) {
-        console.error(e)
+        setError(e)
+        setErrorFlag(true)
+    } finally {
+        restoreCsrf()
     }
 }
 
@@ -30,6 +41,9 @@ const ShoppingCartMain = () => {
     const [ totalItems, setTotalItems ] = useState(0)
     const [ totalPrice, setTotalPrice ] = useState(0.00)
     const navigate = useNavigate()
+    const { csrfToken, restoreCsrf } = useContext(CsrfContext)
+    const { setError, setErrorFlag } = useContext(ErrorContext)
+    const [ isDisabled, setDisabled ] = useState(false)
     useEffect(() => {
         setShoppingCart(() => {
             const cart = new Map(JSON.parse(localStorage.getItem('cart')))
@@ -102,6 +116,7 @@ const ShoppingCartMain = () => {
                                         itemKey={key}
                                         contentO={value}
                                         setShoppingCart={setShoppingCart}
+                                        isDisabled={isDisabled}
                                     />
                                 )
                             })
@@ -110,7 +125,15 @@ const ShoppingCartMain = () => {
                     <div className="shopping-cart-submit">
                         <p>Subtotal {`(${totalItems} items): $${totalPrice.toFixed(2)}`}</p>
                         { totalItems > 0? (
-                            <button className="shopping-cart-submit" onClick={() => handleCheckout()}>Proceed to Checkout</button>
+                            <button disabled={isDisabled} className="shopping-cart-submit" onClick={() => handleCheckout(csrfToken, restoreCsrf, setDisabled, setError, setErrorFlag)}>
+                                {isDisabled? (
+                                    <AiOutlineLoading className="loading"/>
+                                ) : (
+                                    <>
+                                        Proceed to Checkout
+                                    </>
+                                )}
+                            </button>
                         ) : (
                             <button className="shopping-cart-submit" onClick={() => navigate('/browse-computers')}>Continue Shopping</button>
                         )}

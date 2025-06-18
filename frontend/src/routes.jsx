@@ -4,6 +4,8 @@ import ComputersPage from "./pages/browseComputers/ComputersPage";
 import ComputerPageById from "./pages/computerById/ComputerPageById";
 import CartPage from "./pages/Cart/CartPage";
 import UniversalError from "./pages/Errors/UniversalError";
+import StripeSuccess from "./pages/stripe/StripeSuccess";
+import StripeCancel from "./pages/stripe/StripeCancel";
 
 const routes = [
     {
@@ -26,6 +28,14 @@ const routes = [
             {
                 path: "/shopping-cart",
                 element: <CartPage />
+            },
+            {
+                path: "/stripe/checkout/success/",
+                element: <StripeSuccess />
+            },
+            {
+                path: "/stripe/checkout/cancel/",
+                element: <StripeCancel />
             }
         ]
     }
