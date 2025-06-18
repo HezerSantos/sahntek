@@ -7,7 +7,7 @@ const config = {
     }
   };
 
-const currentConfig = import.meta.env.MODE === 'production'
+const currentConfig = import.meta.env.NODE_ENV === 'production'
 ? config.production
 : config.development;
 export default currentConfig;
