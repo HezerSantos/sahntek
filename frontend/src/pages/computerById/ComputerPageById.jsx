@@ -29,7 +29,8 @@ const fetchComputerById = async(
     setErrorFlag,
     csrfToken,
     setTypeName,
-    restoreCsrf
+    restoreCsrf,
+    setPsuName
 ) => {
     try{
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`, {
@@ -38,7 +39,6 @@ const fetchComputerById = async(
             }
         })
         const computer = res.data.computer
-        // console.log(computer)
         setStorageOptions(computer[1])
         setComputerName(computer[0].name)
         setCpuName(computer[0].cpu.name)
@@ -46,6 +46,7 @@ const fetchComputerById = async(
         setRamName(computer[0].ram.name)
         setMoboName(computer[0].motherboard.name)
         setCoolerName(computer[0].cooler.name)
+        setPsuName(computer[0].psu.name)
         setImageUrls(computer[0].urls)
         setTypeName(computer[0].performance)
         const price = Object.values(computer[0]).map(computer => {
@@ -53,9 +54,9 @@ const fetchComputerById = async(
                 return computer.price
             }
         })
-
+        
         const filteredPrice = price.filter(price => price !== null && price !== undefined)
-
+        // console.log(filteredPrice, computer[0].casePrice)
         setPrice(filteredPrice.reduce((sum, price) => sum + price, 0) + computer[0].casePrice)
         setIsLoading(false)
     } catch(e){
@@ -72,6 +73,7 @@ const ComputerPageById = () => {
     const [ ramName, setRamName ] = useState("")
     const [ moboName, setMoboName ] = useState("")
     const [ coolerName, setCoolerName ] = useState("")
+    const [ psuName, setPsuName ] = useState("")
     const [ imageUrls, setImageUrls ] = useState("")
     const [ isLoading, setIsLoading ] = useState(true)
 
@@ -109,7 +111,8 @@ const ComputerPageById = () => {
                 setErrorFlag,
                 csrfToken,
                 setTypeName,
-                restoreCsrf
+                restoreCsrf,
+                setPsuName
             )
         }
         
@@ -141,6 +144,7 @@ const ComputerPageById = () => {
                       mobo={moboName}
                       cooler={coolerName}
                       price={price}
+                      psu={psuName}
                       setPrice={setPrice}
                       storageOptions={storageOptions}
                       isLoading={isLoading}

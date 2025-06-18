@@ -60,6 +60,12 @@ exports.getComputerById = async(req, res, next) => {
                         price: true
                     }
                 },
+                psu: {
+                    select: {
+                        name: true,
+                        price: true
+                    }
+                },
                 urls: true
             }
         })

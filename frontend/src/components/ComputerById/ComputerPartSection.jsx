@@ -8,7 +8,7 @@ const handleCartSubmit = (addToCart, id, storageSelected, currentComputer, price
     setIsDisabled(true)
     setIsNotification(false)
     const item = {
-        key: `C${id}-${currentComputer.color}-${storageSelected}`.replace(/\s+/g, '').trim(),
+        key: `C${id}-${currentComputer.color}-${storageSelected.name}`.replace(/\s+/g, '').trim(),
         content: {
             id: id,
             name: computerName,
@@ -16,7 +16,7 @@ const handleCartSubmit = (addToCart, id, storageSelected, currentComputer, price
             price: price,
             color: currentComputer.color,
             imageUrl: currentComputer.url,
-            storageSelected: storageSelected
+            storageSelected: storageSelected.name
         }
     }
     setIsNotification(true)
@@ -40,7 +40,8 @@ const ComputerPartSection = ({
     storageSelected,
     currentComputer,
     computerName,
-    setIsNotification
+    setIsNotification,
+    psu
 }) => {
     const { addToCart } = useContext(CartContext)
     const [ isDisabled, setIsDisabled ] = useState(false)
@@ -70,6 +71,7 @@ const ComputerPartSection = ({
                                 <ComputerPartStorage type={'Storage'} storageOptions={storageOptions} setPrice={setPrice} setStorageSelected={setStorageSelected}/>
                                 <ComputerPart type={'Motherboard'} partName={mobo}/>
                                 <ComputerPart type={'Cooler'} partName={cooler}/>
+                                <ComputerPart type={'Power Supply'} partName={psu}/>
                                 <ComputerPart type={'Operating System'} partName={'Windows 11'}/>
                                 <ComputerPart type={'Build Fee'} partName={'$50'}/>
                             </>

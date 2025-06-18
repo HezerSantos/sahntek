@@ -39,7 +39,7 @@ app.use("/api/auth/csrf", csrf)
 
 // Logout Route
 // app.use("/api/logout", logoutRouter)
-app.use("/api/computers", validateCsrf, computerRouter)
+app.use("/api/computers", computerRouter)
 app.use("/api/stripe", stripeRouter)
 app.use(errorMiddleware)
 // Server

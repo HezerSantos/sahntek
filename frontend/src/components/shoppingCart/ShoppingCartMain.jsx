@@ -7,12 +7,18 @@ import api from '../../../config'
 
 const handleCheckout = async() => {
     try{
+        const shoppingCart = new Map(JSON.parse(localStorage.getItem('cart')))   
         const res = await axios.post(`${api.apiUrl}/api/stripe/checkout/sessions`, {
-            test: "test"
+            shoppingCart: [...shoppingCart.entries()].map(([key, value]) => {
+                return {
+                    sku: key,
+                    items: value
+                }
+            })
         })
-        console.log(res)
+        window.location = res.data.url
     } catch(e) {
-
+        console.error(e)
     }
 }
 

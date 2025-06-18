@@ -5,7 +5,7 @@ const handleSelect = (e, setPrice, prevStoragePrice, setPrevStoragePrice, setSto
     setPrice(prevPrice => Number(storagePrice) + prevPrice - prevStoragePrice)
     setPrevStoragePrice(Number(storagePrice))
 
-    setStorageSelected(e.target.id)
+    setStorageSelected({name: e.target.id, price: Number(e.target.value.split(" ")[1])})
 }
 const ComputerPartStorage = ({ type, storageOptions, setPrice, setStorageSelected }) => {
     const [ prevStoragePrice, setPrevStoragePrice ] = useState(0)
@@ -17,8 +17,7 @@ const ComputerPartStorage = ({ type, storageOptions, setPrice, setStorageSelecte
         setPrice(prevPrice => {
             return Number(storagePrice) + prevPrice
         })
-        
-        setStorageSelected(formElement.current.children[0].children[1].id)
+        setStorageSelected({name: formElement.current.children[0].children[1].id, price: Number(formElement.current.children[0].children[1].value.split(" ")[1])})
     }, [storageOptions])
     return (
         <>
