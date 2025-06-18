@@ -2,6 +2,19 @@ import { useEffect, useRef, useState } from "react"
 import CartItem from "./CartItem"
 import CartItemSkeleton from "./CartItemSkeleton"
 import { Link, useNavigate } from "react-router-dom"
+import axios from 'axios'
+import api from '../../../config'
+
+const handleCheckout = async() => {
+    try{
+        const res = await axios.post(`${api.apiUrl}/api/stripe/checkout/sessions`, {
+            test: "test"
+        })
+        console.log(res)
+    } catch(e) {
+
+    }
+}
 
 const ShoppingCartMain = () => {
     const [ shoppingCart, setShoppingCart ] = useState(new Map())
@@ -91,7 +104,7 @@ const ShoppingCartMain = () => {
                     <div className="shopping-cart-submit">
                         <p>Subtotal {`(${totalItems} items): $${totalPrice.toFixed(2)}`}</p>
                         { totalItems > 0? (
-                            <button className="shopping-cart-submit">Proceed to Checkout</button>
+                            <button className="shopping-cart-submit" onClick={() => handleCheckout()}>Proceed to Checkout</button>
                         ) : (
                             <button className="shopping-cart-submit" onClick={() => navigate('/browse-computers')}>Continue Shopping</button>
                         )}

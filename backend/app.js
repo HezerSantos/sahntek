@@ -29,6 +29,7 @@ app.use(helmetMiddleware);
 // const loginRouter = require("./routes/auth/loginRouter");
 // const refreshRouter = require("./routes/auth/refreshRouter");
 const computerRouter = require("./routes/computer/computerRouter");
+const stripeRouter = require("./stripe/routes/stripeRouter");
 
 
 // Routes
@@ -39,6 +40,7 @@ app.use("/api/auth/csrf", csrf)
 // Logout Route
 // app.use("/api/logout", logoutRouter)
 app.use("/api/computers", validateCsrf, computerRouter)
+app.use("/api/stripe", stripeRouter)
 app.use(errorMiddleware)
 // Server
 const PORT = process.env.PORT || 8080;
