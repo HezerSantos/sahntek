@@ -34,7 +34,6 @@ export const CsrfProvider = ({children}) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-          console.log('New Csrf')
           getCsrf()
         }, 150000)
     

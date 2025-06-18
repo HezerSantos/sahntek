@@ -19,7 +19,6 @@ export const CartProvider = ({ children }) => {
     const [ shoppingCart, setShoppingCart ] = useState(new Map())
 
     const addToCart = (item) => {
-        console.log(item)
         const cart = new Map(JSON.parse(localStorage.getItem('cart')))
         const hasComputer = cart.has(item.key)
         if(hasComputer){
