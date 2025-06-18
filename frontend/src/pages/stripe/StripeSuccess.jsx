@@ -57,7 +57,7 @@ const StripeSuccess = () => {
                             Thank You For Shopping At Sahntek
                         </h1>
                         <p>You have been successfully charged for this transaction. A receipt for this purchase has been sent to your email.</p>
-                        <button>Go Home</button>
+                        <button onClick={() => navigate("/")}>Go Home</button>
                     </div>
                 </main>
                 <Footer />
