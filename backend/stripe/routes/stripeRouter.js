@@ -1,6 +1,6 @@
 const { Router } = require("express")
 const { postStripeCheckout } = require("../controllers/POST/postStripeCheckout")
-const { postStripeSession } = require("../controllers/postStripeSessionId")
+const { postStripeSession } = require("../controllers/POST/postStripeSessionId")
 
 const stripeRouter = Router()
 
