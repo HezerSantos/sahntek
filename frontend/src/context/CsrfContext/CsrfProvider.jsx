@@ -56,7 +56,6 @@ export const CsrfProvider = ({children}) => {
         const token = jwtDecode(cookieMap.get('__Secure.csrf-token'))
         const newToken = tokenHelper(token.csrf, token.key)
         setCsrfToken(newToken)
-        setCsrfToken(token.csrf)
     }
 
     useEffect(() => {

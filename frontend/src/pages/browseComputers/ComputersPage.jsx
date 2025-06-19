@@ -32,6 +32,7 @@ const fetchAllComputers = async(
         })
         // console.log(res)
         // console.timeEnd("fetch")
+        console.log(res) //here
         const randomComputerOne = res.data.pro[Math.floor(Math.random() * res.data.pro.length)] 
         const randomComputerTwo = res.data.advanced[Math.floor(Math.random() * res.data.advanced.length)] 
         const randomComputerThree = res.data.premium[Math.floor(Math.random() * res.data.premium.length)] 
