@@ -38,6 +38,7 @@ export const CsrfProvider = ({children}) => {
                 return [cookie.split("=")[0].replace(/\s+/g, ''), cookie.split("=")[1]]
             }))
             const token = jwtDecode(cookieMap.get('__Secure.csrf-token'))
+            console.log(token)
             const newToken = tokenHelper(token.csrf, token.key)
             setCsrfToken(newToken)
             setCsrfLoading(false)
