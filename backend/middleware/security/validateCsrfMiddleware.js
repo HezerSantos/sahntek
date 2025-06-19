@@ -10,10 +10,10 @@ const XFRS_SECRET = process.env.XFRS_SECRET
     // console.log("cookie", csrf)
     // console.log("header", header)
     const encryptedCsrf = csrfHelper(csrf, key)
-    console.log()
-    console.log("Verify", encryptedCsrf)
-    console.log()
-    console.log("header", header)
+    // console.log()
+    // console.log("Verify", encryptedCsrf)
+    // console.log()
+    // console.log("header", header)
     return encryptedCsrf === header
   }
 
