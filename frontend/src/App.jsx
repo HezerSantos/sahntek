@@ -16,12 +16,12 @@ function App() {
 
   const { setErrorFlag, setError, errorFlag, error } = useContext(ErrorContext)
 
-    if(import.meta.env.MODE === 'production'){
-        disableReactDevTools()
-        useEffect(() => {
-            console.error = () => {};
-        }, [])
-    }
+    // if(import.meta.env.MODE === 'production'){
+    //     disableReactDevTools()
+    //     useEffect(() => {
+    //         console.error = () => {};
+    //     }, [])
+    // }
     axios.defaults.withCredentials = true;
     useEffect(() => {
         getCsrf()
