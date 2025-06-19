@@ -113,6 +113,8 @@ exports.getAllComputers = async(req, res, next) => {
 
         // const test = await Promise.all([...proPromises, ...premiumPromises, ...advancedPromises])
         // console.timeEnd("getAllComputers");
+
+        console.log(signedPro)
         res.json({
             pro: signedPro,
             advanced: signedAdvanced,
