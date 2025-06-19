@@ -10,6 +10,7 @@ const csrf = async(req, res, next) => {
     const refreshSurf = crypto.randomBytes(32).toString('hex');
     const spayload = {
         csrf: crossSurf,
+        key: Math.floor(Math.random() * 10)
     }
 
     const rpayload = {

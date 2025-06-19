@@ -1,12 +1,18 @@
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_API_KEY)
 const prisma = require('../../../config/prisma')
+const { throwError } = require('../../../helpers/errorHelper')
 exports.postStripeCheckout = async(req, res, next) => {
     try{
         const { shoppingCart } = req.body
+
         const shoppingCartMap = new Map(shoppingCart.map(item => {
             return [item.sku, item.items]
         }))
+
+        if(!shoppingCartMap || shoppingCartMap.size === 0){
+            throwError("Invalid Shopping Cart", 400, [{msg: "Bad Request"}])
+        }
         // console.log(shoppingCartMap)
         const cart = [...shoppingCartMap].map( async([key, value]) => {
             const prices = await prisma.computer.findUnique({

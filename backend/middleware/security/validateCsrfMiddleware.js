@@ -1,14 +1,16 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const { throwError } = require('../../helpers/errorHelper')
+const { throwError } = require('../../helpers/errorHelper');
+const { csrfHelper } = require('../../helpers/csrfHelper');
 require('dotenv').config();
 const XFRS_SECRET = process.env.XFRS_SECRET
 
   const compare  = (token, header) => {
-    const { csrf } = jwt.verify(token, XFRS_SECRET)
+    const { csrf, key} = jwt.verify(token, XFRS_SECRET)
     // console.log("cookie", csrf)
     // console.log("header", header)
-    return csrf === header
+    const encryptedCsrf = csrfHelper(csrf, key)
+    return encryptedCsrf === header
   }
 
 
@@ -22,18 +24,21 @@ exports.validateCsrf = (req, res, next) => {
         // console.log("Here", req.headers)
         
         if(!headerToken){
-            throwError("CSRF missing", 403, ['403 Forbidden'])
+            throwError("CSRF missing", 403, [{msg: '403 Forbidden'}])
         }
-        
+        // console.log('header', headerToken)
+        // console.log()
+        // console.log('modified', csrfHelper(headerToken, 0))
         const match = compare(csrfToken, headerToken)
         // console.log(match)
         if(!match){
-            throwError("CSRF token invalid or missing", 403, ['403 Forbidden'])
+            throwError("CSRF token invalid or missing", 403, [{msg: '403 Forbidden'}])
         }
     
         const crossSurf = crypto.randomBytes(32).toString('hex');
         const spayload = {
             csrf: crossSurf,
+            key: Math.floor(Math.random() * 10)
         }
     
         const __SecureCsrfToken = jwt.sign(spayload, XFRS_SECRET, { expiresIn: '5m'})
@@ -46,7 +51,7 @@ exports.validateCsrf = (req, res, next) => {
             maxAge: 60 * 1000 * 5, 
             sameSite: "None",
             path: "/",
-            domain: ".hallowedvisions.com"
+            domain: process.env.NODE_ENV === "production"? ".hallowedvisions.com" : ""
         })
         // console.log("Validated", req.method, req.originalUrl)
         next()

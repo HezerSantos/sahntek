@@ -52,7 +52,7 @@ const ShoppingCartMain = () => {
         setIsLoading(false)
 
         const checkChildren = () => {
-            if(shoppingCartSection.current.children.length <= 1){
+            if(shoppingCartSection.current.children.length <= 2){
                 setIsEmpty(true)
             }
         }
