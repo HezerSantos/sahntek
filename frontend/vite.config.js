@@ -10,8 +10,11 @@ export default defineConfig({
     setupFiles: './tests/setup.js',
   },
     build: {
-    minify: false,
+    minify: 'esbuild',
     sourcemap: true,
+    esbuild: {
+      drop: ['console', 'debugger']
+    }
   },
   server: {
     allowedHosts: ['d180-75-48-60-225.ngrok-free.app'],

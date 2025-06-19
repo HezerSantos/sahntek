@@ -17,7 +17,6 @@ function App() {
   const { setErrorFlag, setError, errorFlag, error } = useContext(ErrorContext)
 
     if(import.meta.env.MODE === 'production'){
-      console.log('production', api)
         disableReactDevTools()
         useEffect(() => {
             console.error = () => {};
