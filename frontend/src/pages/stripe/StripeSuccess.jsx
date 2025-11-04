@@ -27,7 +27,8 @@ const StripeSuccess = () => {
                     sessionId: sessionId
                 }, {
                     headers: {
-                        csrftoken: csrfToken
+                        csrftoken: csrfToken,
+                        ["Server-Id"]: "HV001"
                     }
                 })
 

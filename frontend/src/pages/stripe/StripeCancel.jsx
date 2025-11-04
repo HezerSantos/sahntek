@@ -26,7 +26,8 @@ const StripeCancel = () => {
                     sessionId: sessionId
                 }, {
                     headers: {
-                        csrftoken: csrfToken
+                        csrftoken: csrfToken,
+                        ['Server-Id']: "HV001"
                     }
                 })
 

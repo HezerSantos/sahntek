@@ -35,7 +35,8 @@ const fetchComputerById = async(
     try{
         const res = await axios.get(`${api.apiUrl}/api/computers/${id}`, {
             headers: {
-                csrftoken: csrfToken
+                csrftoken: csrfToken,
+                ['Server-Id']: "HV001"
             }
         })
         const computer = res.data.computer

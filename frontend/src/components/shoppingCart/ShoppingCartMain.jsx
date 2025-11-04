@@ -21,7 +21,8 @@ const handleCheckout = async(csrfToken, restoreCsrf, setIsDisabled, setError, se
             })
         }, {
             headers: {
-                csrftoken: csrfToken
+                csrftoken: csrfToken,
+                ['Server-Id']: "HV001"
             }
         })
         window.location = res.data.url

@@ -27,7 +27,8 @@ const fetchAllComputers = async(
         // console.time("fetch")
         const res = await axios.get(`${api.apiUrl}/api/computers`, {
             headers: {
-                csrftoken: csrfToken
+                csrftoken: csrfToken,
+                ['Server-Id']: "HV001"
             } 
         })
         // console.log(res)
