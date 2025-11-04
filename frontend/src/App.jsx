@@ -24,6 +24,7 @@ function App() {
     }
     axios.defaults.withCredentials = true;
     useEffect(() => {
+        console.log(import.meta.env.VITE_API_URL || "NA")
         getCsrf()
       }, [])
 
